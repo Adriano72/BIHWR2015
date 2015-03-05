@@ -1,0 +1,1 @@
+/Users/adrianomassi/Documents/Titanium_Studio_Workspace/JMS2015/Resources/iphone/alloy/widgets/com.mp5systems.rippleeffect/styles/widget.js

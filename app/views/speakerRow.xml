@@ -1,0 +1,18 @@
+<Alloy>
+	<TableViewRow id="riga" class="row">
+		<View id="container">
+			<View id="borderSpacer">
+				<Label id="header" class="expoSansProBold"/>
+				<View id="subWrapper">
+					<ImageView id="speakerImg"/>
+					<View id="innerWrapper">
+						<Label id="speakerAdditionalInfo" class="expoSansProBold"/>
+						<Label id="speakerName" class="expoSansProBold"/>
+						<Label id="speakerInfo"/>
+					</View>
+				</View>
+				<Label id="fullInfo"/>
+			</View>
+		</View>
+	</TableViewRow>
+</Alloy>

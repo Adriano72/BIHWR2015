@@ -1,0 +1,16 @@
+
+"#feedWebView": {
+	height: Ti.UI.FILL,
+	width: Ti.UI.FILL,
+	scalesPageToFit: false
+}
+
+
+"#feedTab": {
+	icon: "/images/microphone.png"
+}
+
+".refreshBlog": {
+	image: "/images/refresh-2.png",
+	height: 25
+}

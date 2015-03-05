@@ -1,0 +1,25 @@
+<Alloy>
+	<Tab id="scheduleTab" title=" Schedule ">
+		<Window id="scheduleWindow" class="topBar" title="Schedule" onOpen="doOpen">
+			<TitleControl platform="ios">
+				<Label class="titolo">The John Main Seminar 2015</Label>
+			</TitleControl>
+			<LeftNavButton platform="ios">
+				<ImageView class="leftNavImg"/>
+			</LeftNavButton>
+			
+			<TableView id="scheduleTable"/>
+			
+			<View class="controlsbar">
+				<View class="separator"/>
+				<View class="button" id="first" onClick="loadRetreat">
+					<Label class="buttonText" id="retreat">RETREAT</Label>
+				</View>
+				<View class="button" id="last" onClick="loadSeminar">
+					<Label class="buttonText" id="seminar">SEMINAR</Label>
+				</View>
+			</View>
+			
+		</Window>
+	</Tab>
+</Alloy>

@@ -1,0 +1,58 @@
+".topBar[platform=ios]": {
+	barColor: "#1cc73f",
+	top: Alloy.Globals.winTopHeight,
+	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
+	orientationModes: [Ti.UI.PORTRAIT]
+}
+
+".leftNavImg": {
+	image: "/images/doves_black_transparentbg_web.png",
+	height: 30
+}
+
+".expoSansPro[platform=ios]": {
+	font: {
+        fontFamily:'ExpoSansPro-Regular'
+    }
+}
+
+".expoSansProBold[platform=ios]": {
+	font: {
+        fontFamily:'ExpoSansPro-Bold'
+   }
+}
+
+"Label[platform=android]":{
+	font: {
+        fontFamily:'Expo Sans Pro Regular'
+    }
+}
+
+"Label[platform=ios]":{
+	font: {
+        fontFamily:'ExpoSansPro-Regular'
+    }
+}
+
+".expoSansPro[platform=android]": {
+	font: {
+        fontFamily:'Expo Sans Pro Regular'
+    }
+}
+
+".expoSansProBold[platform=android]": {
+	font: {
+        fontFamily:'Expo Sans Pro Bold'
+   }
+}
+
+".titolo": {
+	height: "100%",
+	width: Ti.UI.SIZE,
+	font: {
+        fontFamily:'ExpoSansPro-Regular',
+        fontSize: '16dp'
+   },
+   color: "#204000"
+}
+

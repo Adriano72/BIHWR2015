@@ -1,0 +1,65 @@
+".row":{
+	height: '120dp',
+	backgroundColor: "#fff",
+	className: "item"
+}
+
+"#post_view": {
+	height: '120dp',
+	layout: 'vertical',
+	left: 5,
+	top: 5,
+	bottom: 5,
+	right: 5
+}
+
+"#av": {
+	//image: image
+	left: 0,
+	top: 0,
+	height: 48,
+	width: 48
+}
+
+"#user_label": {
+	//text:user,
+	left: 54,
+	width: 120,
+	top: -48,
+	bottom: 2,
+	height: 18,
+	textAlign: 'left',
+	color: '#444444',
+	font: {
+        fontSize: '14dp'
+    }
+}
+
+"#date_label": {
+	//text:created_at,
+	right: 0,
+	top: -18,
+	bottom: 2,
+	height: 14,
+	textAlign: 'right',
+	width: 110,
+	color: '#444444',
+	font: {
+        fontSize: '8dp'
+    }
+}
+
+"#tweet_text": {
+	//text:tweet,
+	left: 54,
+	top: 4,
+	bottom: 2,
+	height: Ti.UI.SIZE,
+	width: 230,
+	textAlign: 'left',
+	color: '#000',
+	font: {
+        fontSize: '12dp'
+    }
+}
+

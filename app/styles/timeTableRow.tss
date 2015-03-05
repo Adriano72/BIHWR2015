@@ -1,0 +1,54 @@
+".row": {
+	height: 90,
+	selectionStyle: "NONE",
+	backgroundColor: "#555"
+}
+
+
+".container": {
+	top: 5,
+	layout: "horizontal",
+	width: "90%",
+	height: 80
+}
+
+".leftSquare": {
+	backgroundColor: "#C98644",
+	layout: "vertical",
+	height: 80,
+	width: 80,
+	left: 0
+}
+
+".squareText": {
+	width: Ti.UI.SIZE,
+	top: 0,
+	height: "33%",
+	font: {
+		fontSize: '12dp'
+	},
+	color: "#FFF"
+}
+
+".descContainer": {
+	height: 80,
+	width: "70%",
+	left: 5
+
+}
+
+"#desc": {
+	font: {
+		fontSize: '12dp'
+	},
+	
+	//top: 10,
+	wordWrap: true,
+	horizontalWrap: true,
+	width: Ti.UI.FILL,
+	color: "#FFF"
+}
+
+
+
+

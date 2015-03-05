@@ -1,0 +1,15 @@
+"Window": {
+	backgroundColor:"#fff",
+	orientationModes: [Ti.UI.PORTRAIT],
+	//top:"20",	
+	
+}
+
+"#menu": {
+	icon: "images/doves_black_transparentbg_web.png"
+}
+
+"TabGroup": {
+	orientationModes: [Ti.UI.PORTRAIT]
+}
+

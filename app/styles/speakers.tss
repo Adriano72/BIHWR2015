@@ -1,0 +1,14 @@
+"#speakersWindow":{
+	backgroundColor: "#EEEEEE"
+}
+
+"#speakersTable": {
+	top: 10,
+	height: Ti.UI.SIZE,
+	//maxRowHeight: 420,
+	backgroundColor: "#EEEEEE"
+}
+
+"#speakersTab": {
+	icon: "/images/id-badge.png"
+}

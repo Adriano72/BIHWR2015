@@ -1,0 +1,42 @@
+"#scheduleTab": {
+	icon: "/images/clipboard.png"
+}
+
+"#scheduleWindow": {
+	backgroundColor: "#555"
+}
+
+"#scheduleTable": {
+	bottom: 51,
+	separatorColor: "transparent"
+}
+
+".controlsbar":{
+	bottom: 0,
+	height: 51,
+	backgroundColor: "#222"
+}
+".button":{
+	width: "49.5%",
+	rippleEffect: true,
+	height: Ti.UI.FILL
+}
+"#first": {
+	left: 0
+}
+
+"#last":{
+	right: 0
+}
+
+".buttonText": {
+	touchEnabled: false,
+	color: "#EEE"
+}
+
+".separator": {
+	top: 0,
+	height: 1,
+	width: "100%",
+	backgroundColor: "#EEE"
+}

@@ -1,0 +1,27 @@
+<Alloy>
+	<Tab id="locationTab" title=" Location ">
+		<Window id="locationWindow" class="topBar" title="Location" onOpen="doOpen">
+			<Menu id="menu" platform="android">
+
+				<!-- Cannot specify node text.  Use attributes only. -->
+				<!--<MenuItem id="mn_menu" title="Menu" onClick="showHideMenu"/>-->
+				<!--<MenuItem id="mn_route" title="Route"/>-->
+
+			</Menu>
+			<TitleControl platform="ios">
+				<Label class="titolo">The John Main Seminar 2015</Label>
+			</TitleControl>
+			<LeftNavButton platform="ios">
+				<ImageView class="leftNavImg"/>
+			</LeftNavButton>
+			<RightNavButton platform="ios">
+				<ImageView class="openNavImg" onClick="openNavigation"/>
+			</RightNavButton>
+			<Module id="mapview" module="ti.map" onComplete="selectAnnot" method="createView">
+				<!-- Starting with Alloy 1.4.0, use the Annotation tag to define an annotation -->
+				<!-- Prior to Alloy 1.4.0, create annotations in the controller -->
+				<Annotation id='seminarPlace' title="University of Waikato"/>
+			</Module>
+		</Window>
+	</Tab>
+</Alloy>

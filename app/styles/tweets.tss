@@ -1,0 +1,17 @@
+
+"#tweetsTable[platform=ios]": {
+	minRowHeight: 58,
+	refreshControl: "refresh"
+}
+
+"#tweetsTable[platform=android]": {
+	minRowHeight: 58
+}
+
+"#tweetsTab": {
+	icon: "/images/twitter.png"
+}
+
+"#refresh": {
+	tintColor: "#6DD900"
+}

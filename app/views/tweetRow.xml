@@ -1,0 +1,15 @@
+<Alloy>
+
+	<TableViewRow id="riga" class="row" onClick="goToURL">
+
+		<View id="post_view">
+			<ImageView id="av"/>
+			<Label id="user_label"/>
+			<Label id="date_label"/>
+			<Label id="tweet_text"/>
+			
+		</View>
+
+	</TableViewRow>
+
+</Alloy>

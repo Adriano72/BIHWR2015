@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+    <id>it.adrianomassi.bihwr2015</id>
+    <name>BIHWR2015</name>
+    <version>1.0</version>
+    <publisher>WCCM</publisher>
+    <url>http://www.johnmainseminar2015.com</url>
+    <description>Bere Island Holy Week Retreat 2015</description>
+    <copyright>2015 by WCCM</copyright>
+    <icon>appicon.png</icon>
+    <fullscreen>false</fullscreen>
+    <navbar-hidden>false</navbar-hidden>
+    <analytics>true</analytics>
+    <guid>4aa75469-d60e-4e83-8bfd-6f3ea1a44729</guid>
+    <property name="ti.ui.defaultunit" type="string">dp</property>
+    <ios>
+        <plist>
+            <dict>
+                <key>UISupportedInterfaceOrientations~iphone</key>
+                <array>
+                    <string>UIInterfaceOrientationPortrait</string>
+                </array>
+                <key>UISupportedInterfaceOrientations~ipad</key>
+                <array>
+                    <string>UIInterfaceOrientationPortrait</string>
+                    <string>UIInterfaceOrientationPortraitUpsideDown</string>
+                    <string>UIInterfaceOrientationLandscapeLeft</string>
+                    <string>UIInterfaceOrientationLandscapeRight</string>
+                </array>
+                <key>UIRequiresPersistentWiFi</key>
+                <false/>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+                <key>UIStatusBarHidden</key>
+                <false/>
+                <key>UIStatusBarStyle</key>
+                <string>UIStatusBarStyleDefault</string>
+                <key>NSLocationWhenInUseUsageDescription</key>
+                <string>
+                    Get user position to calculate the route to the relevant place
+                </string>
+            </dict>
+        </plist>
+    </ios>
+    <android xmlns:android="http://schemas.android.com/apk/res/android">
+        <manifest android:installLocation="preferExternal"
+            android:versionCode="1" android:versionName="1.0.0" package="it.adrianomassi.bihwr2015">
+            
+            <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="19"/>
+            <!--<uses-sdk android:targetSdkVersion="19"/>-->
+            <supports-screens android:anyDensity="true"/>
+            <!-- Allows the API to download data from Google Map servers -->
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <!-- Allows the API to cache data -->
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+            <!-- Use GPS for device location -->
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+            <!-- Use Wi-Fi or mobile connection for device location -->
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+            <!-- Allows the API to access Google web-based services -->
+            <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+            <!-- Specify OpenGL ES 2.0 as a requirement -->
+            <uses-feature android:glEsVersion="0x00020000" android:required="true"/>
+            <!-- Replace <com.domain.appid> with your application ID -->
+            <uses-permission android:name="it.adrianomassi.bihwr2015.permission.MAPS_RECEIVE"/>
+            <permission
+                android:name="it.adrianomassi.bihwr2015.permission.MAPS_RECEIVE" android:protectionLevel="signature"/>
+            <application android:theme="@style/Theme.Jms2015">
+                <!-- <application android:theme="@style/Theme.ZiriZiriTheme">-->
+                <!--<application android:theme="@style/Light">-->
+                <!--<activity android:name="org.appcelerator.titanium.TiTranslucentActivity"/>-->
+                <!--<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />-->
+                <meta-data
+                    android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyAtntp4EecQyWzVgeA6bLCCrSW5AHJYt34"/>
+            </application>
+        </manifest>
+    </android>
+    <mobileweb>
+        <precache/>
+        <splash>
+            <enabled>true</enabled>
+            <inline-css-images>true</inline-css-images>
+        </splash>
+        <theme>default</theme>
+    </mobileweb>
+    <modules>
+        <module platform="iphone">ti.map</module>
+        <module platform="android">ti.map</module>
+        <module platform="android" version="1.4.3">com.alcoapps.actionbarextras</module>
+    </modules>
+    <deployment-targets>
+        <target device="android">true</target>
+        <target device="blackberry">false</target>
+        <target device="ipad">true</target>
+        <target device="iphone">true</target>
+        <target device="mobileweb">false</target>
+    </deployment-targets>
+    <sdk-version>3.4.1.GA</sdk-version>
+    <plugins>
+        <plugin version="1.0">ti.alloy</plugin>
+    </plugins>
+</ti:app>

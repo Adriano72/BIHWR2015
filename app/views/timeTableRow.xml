@@ -1,0 +1,16 @@
+<Alloy>
+	<TableViewRow id="riga" class="row">
+		<View class="container">
+			<View class="leftSquare">
+				<Label id="day" class="squareText"/>
+				<Label id="date" class="squareText"/>
+				<Label id="time" class="squareText"/>
+			</View>
+			<View class="descContainer">
+				<Label id="desc"/>
+			</View>
+			
+
+		</View>
+	</TableViewRow>
+</Alloy>
