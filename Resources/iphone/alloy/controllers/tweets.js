@@ -176,7 +176,7 @@ function Controller() {
                 });
                 $.tweetsTable.setData(rows);
             } catch (E) {
-                alert(E);
+                Ti.API.info(E);
             }
         };
         xhr.send();

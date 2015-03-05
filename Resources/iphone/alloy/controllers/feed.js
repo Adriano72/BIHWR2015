@@ -34,7 +34,7 @@ function Controller() {
         statusBarStyle: Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
         orientationModes: [ Ti.UI.PORTRAIT ],
         id: "feedWindow",
-        title: "JMS 2015 Live Blog"
+        title: "Bere Island Retreat Live Blog"
     });
     doOpen ? $.__views.feedWindow.addEventListener("open", doOpen) : __defers["$.__views.feedWindow!open!doOpen"] = true;
     $.__views.__alloyId1 = Ti.UI.createLabel({

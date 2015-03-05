@@ -250,7 +250,7 @@ function loadData() {
 			//Ti.UI.currentWindow.add(tableview);
 			//win.add(tableview);
 		} catch(E) {
-			alert(E);
+			Ti.API.info(E);
 		}
 	};
 
