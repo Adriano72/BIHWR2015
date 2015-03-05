@@ -45,7 +45,6 @@
     <android xmlns:android="http://schemas.android.com/apk/res/android">
         <manifest android:installLocation="preferExternal"
             android:versionCode="1" android:versionName="1.0.0" package="it.adrianomassi.bihwr2015">
-            
             <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="19"/>
             <!--<uses-sdk android:targetSdkVersion="19"/>-->
             <supports-screens android:anyDensity="true"/>
@@ -95,7 +94,7 @@
         <target device="iphone">true</target>
         <target device="mobileweb">false</target>
     </deployment-targets>
-    <sdk-version>3.4.1.GA</sdk-version>
+    <sdk-version>3.5.0.GA</sdk-version>
     <plugins>
         <plugin version="1.0">ti.alloy</plugin>
     </plugins>
