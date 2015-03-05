@@ -19,7 +19,6 @@
 	if (self != nil)
 	{
 		selectedIndex = -1;
-		isNullStyle = YES;
 	}
 	return self;
 }
@@ -78,54 +77,6 @@
 	[[self segmentedControl] setMomentary:!newIsTabbed];
 }
 
--(void)useStyle:(UISegmentedControlStyle)newStyle;
-{
-	int segmentCount = [[self segmentedControl] numberOfSegments];
-	CGFloat * segmentWidth;
-	if (segmentCount > 0)
-	{
-		segmentWidth = malloc(sizeof(CGFloat) * segmentCount);
-	}
-	else
-	{
-		segmentWidth = NULL;
-	}
-
-	for (int thisSegmentIndex = 0; thisSegmentIndex < segmentCount; thisSegmentIndex++)
-	{
-		segmentWidth[thisSegmentIndex]=[segmentedControl widthForSegmentAtIndex:thisSegmentIndex];
-	}
-	
-	[[self segmentedControl] setSegmentedControlStyle:newStyle];
-
-	for (int thisSegmentIndex = 0; thisSegmentIndex < segmentCount; thisSegmentIndex++)
-	{
-		[segmentedControl setWidth:segmentWidth[thisSegmentIndex] forSegmentAtIndex:thisSegmentIndex];
-	}
-	
-	if (segmentWidth != NULL)
-	{
-		free(segmentWidth);
-	}
-}
-
-- (void)updateNullStyle;
-{
-	if (!isNullStyle)
-	{
-		return;
-	}
-
-	if ([(TiViewProxy *)[self proxy] isUsingBarButtonItem])
-	{
-		[self useStyle:UISegmentedControlStyleBar];
-	}
-	else
-	{
-		[self useStyle:UISegmentedControlStylePlain];
-	}
-}
-
 -(void)setBackgroundColor_:(id)value
 {
 	TiColor *color = [TiUtils colorValue:value];
@@ -140,16 +91,7 @@
 
 -(void)setStyle_:(id)value
 {
-	int newStyle = [TiUtils intValue:value def:-1];
-	isNullStyle = (newStyle < 0);
-	if (isNullStyle)
-	{
-		[self updateNullStyle];
-	}
-	else
-	{
-		[self useStyle:newStyle];
-	}
+    DebugLog(@"[WARN] The style property has been deprecated in 3.4.2 and no longer has any effect");
 }
 
 -(void)setLabels_:(id)value
@@ -184,10 +126,7 @@
 			if (thisSegmentAccessibilityLabel != nil) {
 				thisSegmentImage.accessibilityLabel = thisSegmentAccessibilityLabel;
 			}
-			//CLEANUP CODE WHEN WE UPGRADE MINIMUM XCODE VERSION TO XCODE5
-			if ([thisSegmentImage respondsToSelector:@selector(imageWithRenderingMode:)]) {
-				thisSegmentImage = [(id<UIImageIOS7Support>)thisSegmentImage imageWithRenderingMode:1];//UIImageRenderingModeAlwaysOriginal;
-			}
+			thisSegmentImage = [thisSegmentImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 			[segmentedControl insertSegmentWithImage:thisSegmentImage atIndex:thisSegmentIndex animated:NO];
 		}
 		else
@@ -213,15 +152,13 @@
 		[segmentedControl setSelectedSegmentIndex:selectedIndex];
 	}
 
-	[self updateNullStyle];
-
 }
 
 -(IBAction)onSegmentChange:(id)sender
 {
-	int newIndex = [(UISegmentedControl *)sender selectedSegmentIndex];
+	NSInteger newIndex = [(UISegmentedControl *)sender selectedSegmentIndex];
 	
-	[self.proxy replaceValue:NUMINT(newIndex) forKey:@"index" notification:NO];
+	[self.proxy replaceValue:NUMINTEGER(newIndex) forKey:@"index" notification:NO];
 	
 	if (newIndex == selectedIndex)
 	{
@@ -232,7 +169,7 @@
 
 	if ([self.proxy _hasListeners:@"click"])
 	{
-		NSDictionary *event = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:selectedIndex] forKey:@"index"];
+		NSDictionary *event = [NSDictionary dictionaryWithObject:NUMINTEGER(selectedIndex) forKey:@"index"];
 		[self.proxy fireEvent:@"click" withObject:event];
 	}
 	

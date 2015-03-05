@@ -361,7 +361,7 @@ USE_PROXY_FOR_VERIFY_AUTORESIZING
 		NSInteger colIndex = 0;
 		for (TiUIPickerColumnProxy *col in [self columns])
 		{
-			int rowIndex = row;
+			NSInteger rowIndex = row;
 			if (component!=colIndex)
 			{
 				rowIndex = [pickerView selectedRowInComponent:colIndex];
@@ -386,8 +386,8 @@ USE_PROXY_FOR_VERIFY_AUTORESIZING
 		}
 		NSDictionary *event = [NSDictionary dictionaryWithObjectsAndKeys:
 							   selected,@"selectedValue",
-							   NUMINT(row),@"rowIndex",
-							   NUMINT(component),@"columnIndex",
+							   NUMINTEGER(row),@"rowIndex",
+							   NUMINTEGER(component),@"columnIndex",
 							   proxy,@"column",
 							   rowproxy,@"row",
 							   nil];

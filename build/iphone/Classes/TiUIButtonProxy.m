@@ -68,10 +68,10 @@
 {
 	switch((int)styleCache)
 	{
-		case UIJMS2015NativeItemInfoLight:
-		case UIJMS2015NativeItemInfoDark:
+		case UIBIHWR2015NativeItemInfoLight:
+		case UIBIHWR2015NativeItemInfoDark:
 			return 18;
-		case UIJMS2015NativeItemDisclosure:
+		case UIBIHWR2015NativeItemDisclosure:
 			return 29;
 		default: {
 			break;
@@ -84,10 +84,10 @@
 {
 	switch((int)styleCache)
 	{
-		case UIJMS2015NativeItemInfoLight:
-		case UIJMS2015NativeItemInfoDark:
+		case UIBIHWR2015NativeItemInfoLight:
+		case UIBIHWR2015NativeItemInfoDark:
 			return 19;
-		case UIJMS2015NativeItemDisclosure:
+		case UIBIHWR2015NativeItemDisclosure:
 			return 31;
 		default: {
 			break;
@@ -101,9 +101,9 @@
 {
 	switch ((int)styleCache)
 	{
-		case UIJMS2015NativeItemInfoLight:
-		case UIJMS2015NativeItemInfoDark:
-		case UIJMS2015NativeItemDisclosure:
+		case UIBIHWR2015NativeItemInfoLight:
+		case UIBIHWR2015NativeItemInfoDark:
+		case UIBIHWR2015NativeItemDisclosure:
 			return suggestedResizing & ~(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
 		default: {
 			break;
@@ -158,7 +158,7 @@
 	[super fireEvent:type withObject:obj withSource:source propagate:propagate reportSuccess:report errorCode:code message:message];
 }
 
--(void)fireEvent:(NSString*)type withObject:(id)obj propagate:(BOOL)propagate reportSuccess:(BOOL)report errorCode:(int)code message:(NSString*)message;
+-(void)fireEvent:(NSString*)type withObject:(id)obj propagate:(BOOL)propagate reportSuccess:(BOOL)report errorCode:(NSInteger)code message:(NSString*)message;
 {
 	if (![TiUtils boolValue:[self valueForKey:@"enabled"] def:YES])
 	{

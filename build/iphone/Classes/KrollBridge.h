@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Bridge.h"
-#import "Ti.h"
+#import "JavaScriptCore/Ti.h"
 #import "TiEvaluator.h"
 #import "TiProxy.h"
 #import "KrollContext.h"
@@ -19,9 +19,9 @@
 
 #ifdef KROLL_COVERAGE
 # import "KrollCoverage.h"
-@interface JMS2015Object : KrollCoverageObject {
+@interface BIHWR2015Object : KrollCoverageObject {
 #else
-@interface JMS2015Object : KrollObject {
+@interface BIHWR2015Object : KrollObject {
 #endif
 @private
 	NSMutableDictionary *modules;
@@ -35,7 +35,7 @@
 -(TiModule*)moduleNamed:(NSString*)name context:(id<TiEvaluator>)context;
 @end
 
-extern NSString * JMS2015$ModuleRequireFormat;
+extern NSString * BIHWR2015$ModuleRequireFormat;
 
 @interface KrollBridge : Bridge<TiEvaluator,KrollDelegate> {
 @private
@@ -44,7 +44,7 @@ extern NSString * JMS2015$ModuleRequireFormat;
 	KrollContext *context;
 	NSDictionary *preload;
 	NSMutableDictionary *modules;
-	JMS2015Object *_jms2015;
+	BIHWR2015Object *_bihwr2015;
     KrollObject* console;
 	BOOL shutdown;
     BOOL evaluationError;

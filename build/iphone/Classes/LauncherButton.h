@@ -9,9 +9,9 @@
 
 
 // A good bit of this code was derived from the Three20 project
-// and was customized to work inside JMS2015
+// and was customized to work inside BIHWR2015
 //
-// All modifications by JMS2015 are licensed under 
+// All modifications by BIHWR2015 are licensed under 
 // the Apache License, Version 2.0
 //
 //

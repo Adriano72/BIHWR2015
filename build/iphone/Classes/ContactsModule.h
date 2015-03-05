@@ -21,7 +21,6 @@
 	ABAddressBookRef addressBook;
 	ABPeoplePickerNavigationController* picker;
 	BOOL reloadAddressBook;
-	BOOL iOS6API;
 	BOOL animated;
 	KrollCallback* cancelCallback;
 	KrollCallback* selectedPersonCallback;

@@ -8,12 +8,12 @@
 #define STRING(x) _QUOTEME(x)
 
 NSString * const TI_APPLICATION_DEPLOYTYPE = @"development";
-NSString * const TI_APPLICATION_ID = @"it.adrianomassi.jms2015";
+NSString * const TI_APPLICATION_ID = @"it.adrianomassi.bihwr2015";
 NSString * const TI_APPLICATION_PUBLISHER = @"WCCM";
-NSString * const TI_APPLICATION_URL = @"http://www.johnmainseminar2015.com";
-NSString * const TI_APPLICATION_NAME = @"JMS 2015";
+NSString * const TI_APPLICATION_URL = @"http://www.wccm.org";
+NSString * const TI_APPLICATION_NAME = @"BIHWR2015";
 NSString * const TI_APPLICATION_VERSION = @"1.0";
-NSString * const TI_APPLICATION_DESCRIPTION = @"The John Main Seminar 2015";
+NSString * const TI_APPLICATION_DESCRIPTION = @"Bere Island Holy Week Retreat 2015";
 NSString * const TI_APPLICATION_COPYRIGHT = @"2015 by WCCM";
 NSString * const TI_APPLICATION_GUID = @"4aa75469-d60e-4e83-8bfd-6f3ea1a44729";
 BOOL const TI_APPLICATION_ANALYTICS = true;

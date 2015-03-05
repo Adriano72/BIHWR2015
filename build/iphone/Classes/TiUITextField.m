@@ -297,7 +297,7 @@
 		textWidgetView = [[TiTextField alloc] initWithFrame:CGRectZero];
 		((TiTextField *)textWidgetView).delegate = self;
 		((TiTextField *)textWidgetView).text = @"";
-		((TiTextField *)textWidgetView).textAlignment = UITextAlignmentLeft;
+		((TiTextField *)textWidgetView).textAlignment = NSTextAlignmentLeft;
 		((TiTextField *)textWidgetView).contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 		[(TiTextField *)textWidgetView configure];
 		[(TiTextField *)textWidgetView setTouchHandler:self];
@@ -517,6 +517,8 @@
 - (void)textFieldDidEndEditing:(UITextField *)tf
 {
 	[self textWidget:tf didBlurWithText:[tf text]];
+	//TIMOB-18365. Value not updated when autocorrect is up and return is pressed
+	[self textFieldDidChange:nil];
 }
 
 - (void)textFieldDidChange:(NSNotification *)notification

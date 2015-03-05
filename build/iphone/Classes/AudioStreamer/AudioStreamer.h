@@ -18,7 +18,7 @@
 
 // Also note that we've had to change enumeration and class names here - this is because
 // some modules may require the use of AudioStreamer in external libraries and the
-// symbols cannot be changed on that end.  The use of common symbols in JMS2015 without
+// symbols cannot be changed on that end.  The use of common symbols in BIHWR2015 without
 // namespaces is a recurring problem, and we can thank Objective-C for it.
 // - SPT
 
@@ -113,7 +113,7 @@ extern NSString * const ASStatusChangedNotification;
 @property (readwrite) UInt32 bitRate;
 @property (readwrite) double volume;
 @property (readwrite,assign) id<AudioStreamerDelegate> delegate;
-@property (nonatomic,readwrite,assign) NSUInteger bufferSize;
+@property (nonatomic,readwrite,assign) UInt32 bufferSize;
 
 - (void)start;
 - (void)stop;

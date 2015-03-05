@@ -35,7 +35,7 @@ typedef enum {
 	
 	CFMutableArrayRef colorValues;
 	CGFloat * colorOffsets;	//A -1 indicates a lack of entry.
-	int arraySize;
+	NSUInteger arraySize;
 	int offsetsDefined;
 @private
 

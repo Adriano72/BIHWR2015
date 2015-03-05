@@ -171,7 +171,8 @@
 
 -(BOOL)resignFirstResponder
 {
-    becameResponder = NO;
+	[super resignFirstResponder];
+	becameResponder = NO;
     return [textWidgetView resignFirstResponder];
 }
 
@@ -209,7 +210,7 @@
     if([(TiViewProxy*)[self proxy] _hasListeners:@"link" checkParent:NO]) {
         NSDictionary *eventDict = [NSDictionary dictionaryWithObjectsAndKeys:
                                    [URL absoluteString], @"url",
-                                   [NSArray arrayWithObjects:NUMINT(characterRange.location), NUMINT(characterRange.length),nil],@"range",
+                                   [NSArray arrayWithObjects:NUMUINTEGER(characterRange.location), NUMUINTEGER(characterRange.length),nil],@"range",
                                    nil];
         [[self proxy] fireEvent:@"link" withObject:eventDict propagate:NO reportSuccess:NO errorCode:0 message:nil];
     }
@@ -249,8 +250,8 @@
 	if ([self.proxy _hasListeners:@"selected"])
 	{
 		NSRange range = tv.selectedRange;
-        NSDictionary* rangeDict = [NSDictionary dictionaryWithObjectsAndKeys:NUMINT(range.location),@"location",
-                                   NUMINT(range.length),@"length", nil];
+        NSDictionary* rangeDict = [NSDictionary dictionaryWithObjectsAndKeys:NUMUINTEGER(range.location),@"location",
+                                   NUMUINTEGER(range.length),@"length", nil];
 		NSDictionary *event = [NSDictionary dictionaryWithObject:rangeDict forKey:@"range"];
 		[self.proxy fireEvent:@"selected" withObject:event];
 	}
@@ -311,9 +312,10 @@ Text area constrains the text event though the content offset and edge insets ar
 -(CGFloat)contentWidthForWidth:(CGFloat)value
 {
     UITextView* ourView = (UITextView*)[self textWidgetView];
-    NSString* txt = ourView.text;
-    //sizeThatFits does not seem to work properly.
-    CGFloat txtWidth = [txt sizeWithFont:ourView.font constrainedToSize:CGSizeMake(value, 1E100) lineBreakMode:UILineBreakModeWordWrap].width;
+    NSAttributedString* theString = [ourView attributedText];
+    CGFloat txtWidth = ceilf([theString boundingRectWithSize:CGSizeMake(value, CGFLOAT_MAX)
+                                               options:NSStringDrawingUsesLineFragmentOrigin
+                                               context:nil].size.width);
     if (value - txtWidth >= TXT_OFFSET) {
         return (txtWidth + TXT_OFFSET);
     }
@@ -323,11 +325,6 @@ Text area constrains the text event though the content offset and edge insets ar
 -(CGFloat)contentHeightForWidth:(CGFloat)value
 {
     UITextView* ourView = (UITextView*)[self textWidgetView];
-    NSString* txt = ourView.text;
-    if (txt.length == 0) {
-        txt = @" ";
-    }
-    
     return [ourView sizeThatFits:CGSizeMake(value, 1E100)].height;
 }
 

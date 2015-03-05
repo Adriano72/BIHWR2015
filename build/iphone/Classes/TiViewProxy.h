@@ -17,7 +17,7 @@
  */
 @protocol TiKeyboardFocusableView
 
-#pragma mark Public JMS2015 APIs.
+#pragma mark Public BIHWR2015 APIs.
 
 /**
  Tells the view to focus.

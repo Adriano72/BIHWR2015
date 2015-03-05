@@ -181,7 +181,7 @@
 	if ([NSThread isMainThread]) {
 		pthread_rwlock_wrlock(&childrenLock);
 		if(position < 0 || position > [children count]) {
-			position = [children count];
+			position = (int)[children count];
 		}
 		[children insertObject:childView atIndex:position];
 		//Turn on clipping because I have children
@@ -214,7 +214,7 @@
 		}
 		pthread_rwlock_wrlock(&childrenLock);
 		if(position < 0 || position > [children count]) {
-			position = [children count];
+			position = (int)[children count];
 		}
 		[children insertObject:childView atIndex:position];
 		pthread_rwlock_unlock(&childrenLock);
@@ -722,7 +722,6 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap,horizontalWrap,horizontalWrap,[self willCha
 	for (TiViewProxy * thisChildProxy in subproxies)
 	{
         if (isHorizontal) {
-            sandBox = CGRectZero;
             sandBox = [self computeChildSandbox:thisChildProxy withBounds:bounds];
             thisWidth = sandBox.origin.x + sandBox.size.width;
         }
@@ -776,7 +775,6 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap,horizontalWrap,horizontalWrap,[self willCha
 	for (TiViewProxy * thisChildProxy in array)
 	{
         if (!isAbsolute) {
-            sandBox = CGRectZero;
             sandBox = [self computeChildSandbox:thisChildProxy withBounds:bounds];
             thisHeight = sandBox.origin.y + sandBox.size.height;
         }
@@ -992,6 +990,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap,horizontalWrap,horizontalWrap,[self willCha
 		
 		[childrenArray release];
 		[self viewDidAttach];
+		[view updateClipping];
 
 		// If parent has a non absolute layout signal the parent that
 		//contents will change else just lay ourselves out
@@ -1078,38 +1077,46 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap,horizontalWrap,horizontalWrap,[self willCha
 
 -(void)windowWillOpen
 {
-	//TODO: This should be properly handled and moved, but for now, let's force it (Redundantly, I know.)
-	if (parent != nil) {
-		[self parentWillShow];
-	}
+    //TODO: This should be properly handled and moved, but for now, let's force it (Redundantly, I know.)
+    if (parent != nil) {
+        [self parentWillShow];
+    }
 
-	pthread_rwlock_rdlock(&childrenLock);
-	
-	// this method is called just before the top level window
-	// that this proxy is part of will open and is ready for
-	// the views to be attached
-	
-	if (windowOpened==YES)
-	{
-		pthread_rwlock_unlock(&childrenLock);
-		return;
-	}
-	
-	windowOpened = YES;
-	windowOpening = YES;
-	
-	// If the window was previously opened, it may need to have
-	// its existing children redrawn
-	// Maybe need to call layout children instead for non absolute layout
-	if (children != nil) {
-		for (TiViewProxy* child in children) {
-			[self layoutChild:child optimize:NO withMeasuredBounds:[[self size] rect]];
-			[child windowWillOpen];
-		}
-	}
-	
-	pthread_rwlock_unlock(&childrenLock);
-	
+    pthread_rwlock_rdlock(&childrenLock);
+
+    // this method is called just before the top level window
+    // that this proxy is part of will open and is ready for
+    // the views to be attached
+
+    if (windowOpened==YES)
+    {
+        pthread_rwlock_unlock(&childrenLock);
+        return;
+    }
+
+    windowOpened = YES;
+    windowOpening = YES;
+
+    BOOL absoluteLayout = TiLayoutRuleIsAbsolute(layoutProperties.layoutStyle);
+
+    // If the window was previously opened, it may need to have
+    // its existing children redrawn
+    // Maybe need to call layout children instead for non absolute layout
+    if (children != nil) {
+        for (TiViewProxy* child in children) {
+            if (absoluteLayout) {
+                [self layoutChild:child optimize:NO withMeasuredBounds:[[self size] rect]];
+            }
+            [child windowWillOpen];
+        }
+    }
+
+    pthread_rwlock_unlock(&childrenLock);
+
+    //TIMOB-17923 - Do a full layout pass (set proper sandbox) if non absolute layout
+    if (!absoluteLayout) {
+        [self layoutChildren:NO];
+    }
 }
 
 -(void)windowDidOpen
@@ -1549,7 +1556,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap,horizontalWrap,horizontalWrap,[self willCha
 	}
 }
 
--(void)fireEvent:(NSString*)type withObject:(id)obj propagate:(BOOL)propagate reportSuccess:(BOOL)report errorCode:(int)code message:(NSString*)message;
+-(void)fireEvent:(NSString*)type withObject:(id)obj propagate:(BOOL)propagate reportSuccess:(BOOL)report errorCode:(NSInteger)code message:(NSString*)message;
 {
 	// Note that some events (like movie 'complete') are fired after the view is removed/dealloc'd.
 	// Because of the handling below, we can safely set the view to 'nil' in this case.
@@ -2247,7 +2254,7 @@ if(OSAtomicTestAndSetBarrier(flagBit, &dirtyflags))	\
     
 	BOOL horizontalNoWrap = TiLayoutRuleIsHorizontal(layoutProperties.layoutStyle) && !TiLayoutFlagsHasHorizontalWrap(&layoutProperties);
     NSMutableArray * measuredBounds = [NSMutableArray arrayWithCapacity:[childArray count]];
-    NSUInteger i, count = [childArray count];
+    int i, count = (int)[childArray count];
 	int maxHeight = 0;
     
     //First measure the sandbox bounds

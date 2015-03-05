@@ -22,7 +22,7 @@
 MAKE_SYSTEM_PROP(DONE,UIBarButtonItemStyleDone);
 MAKE_SYSTEM_PROP(BORDERED,UIBarButtonItemStyleBordered);
 MAKE_SYSTEM_PROP(PLAIN,UIBarButtonItemStylePlain);
-MAKE_SYSTEM_PROP(BAR,UISegmentedControlStyleBar);
+MAKE_SYSTEM_PROP_DEPRECATED_REMOVED(BAR,2,@"UI.iPhone.SystemButtonStyle.BAR",@"3.4.2",@"3.6.0");
 
 @end
 

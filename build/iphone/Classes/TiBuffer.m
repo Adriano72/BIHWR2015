@@ -20,7 +20,7 @@ NSArray* bufferKeySequence = nil;
 -(id)init
 {
     if (self = [super init]) {
-        byteOrder = [[NSNumber numberWithInt:CFByteOrderGetCurrent()] retain];
+        byteOrder = [NUMLONG(CFByteOrderGetCurrent()) retain];
     }
     return self;
 }
@@ -55,9 +55,9 @@ NSArray* bufferKeySequence = nil;
 -(NSNumber*)append:(id)args
 {
     TiBuffer* source = nil;
-    int sourceOffset;
+    NSUInteger sourceOffset;
     BOOL hasSourceOffset;
-    int sourceLength;
+    NSUInteger sourceLength;
     BOOL hasSourceLength;
     
     ENSURE_ARG_AT_INDEX(source, args, 0, TiBuffer);
@@ -76,17 +76,17 @@ NSArray* bufferKeySequence = nil;
     
     if (sourceOffset >= [[source data] length]) {
         [self throwException:@"TiBoundsException"
-                   subreason:[NSString stringWithFormat:@"Source offset %d is past source bounds (length %u)",sourceOffset,[[source data] length]]
+                   subreason:[NSString stringWithFormat:@"Source offset %lu is past source bounds (length %lu)",(unsigned long)sourceOffset,(unsigned long)[[source data] length]]
                     location:CODELOCATION];
     }
     
     if (sourceLength > [[source data] length]) {
         [self throwException:@"TiBoundsException"
-                   subreason:[NSString stringWithFormat:@"Source length %d is longer than source (length %u)", sourceLength,[[source data] length]]
+                   subreason:[NSString stringWithFormat:@"Source length %lu is longer than source (length %lu)", (unsigned long)sourceLength,(unsigned long)[[source data] length]]
                     location:CODELOCATION];
     }
     
-    int length = MIN(sourceLength, [[source data] length] - sourceOffset);
+    NSUInteger length = MIN(sourceLength, [[source data] length] - sourceOffset);
     const void* bytes = [[source data] bytes];
 	if(data == nil) {
 		data = [[NSMutableData alloc] initWithBytes:bytes+sourceOffset length:length];
@@ -94,7 +94,7 @@ NSArray* bufferKeySequence = nil;
 		[data appendBytes:(bytes+sourceOffset) length:length];
 	}
     
-    return NUMINT(length);
+    return NUMUINTEGER(length);
 }
 
 -(NSNumber*)insert:(id)args
@@ -103,7 +103,7 @@ NSArray* bufferKeySequence = nil;
     int offset;
     int sourceOffset;
     BOOL hasSourceOffset;
-    int sourceLength;
+    NSUInteger sourceLength;
     BOOL hasSourceLength;
     
     ENSURE_ARG_AT_INDEX(source, args, 0, TiBuffer);
@@ -121,17 +121,17 @@ NSArray* bufferKeySequence = nil;
     }
     if (offset >= [data length]) {
         [self throwException:@"TiBoundsException"
-                   subreason:[NSString stringWithFormat:@"Offset %d is past buffer bounds (length %u)",offset,[data length]]
+                   subreason:[NSString stringWithFormat:@"Offset %d is past buffer bounds (length %lu)",offset,(unsigned long)[data length]]
                     location:CODELOCATION];
     }
     if (sourceOffset >= [[source data] length]) {
         [self throwException:@"TiBoundsException"
-                   subreason:[NSString stringWithFormat:@"Source offset %d is past source bounds (length %u)",sourceOffset,[[source data] length]]
+                   subreason:[NSString stringWithFormat:@"Source offset %d is past source bounds (length %lu)",sourceOffset,(unsigned long)[[source data] length]]
                     location:CODELOCATION];
     }
     if (sourceLength > [[source data] length]) {
         [self throwException:@"TiBoundsException"
-                   subreason:[NSString stringWithFormat:@"Source length %d is longer than source (length %u)", sourceLength,[[source data] length]]
+                   subreason:[NSString stringWithFormat:@"Source length %lu is longer than source (length %lu)", (unsigned long)sourceLength,(unsigned long)[[source data] length]]
                     location:CODELOCATION];
     }
     
@@ -142,7 +142,7 @@ NSArray* bufferKeySequence = nil;
     
     // Here we have 2 possible lengths: sourceLength, or the data from sourceOffset to the end of the source buffer.
     // We're extending the buffer, so the end of our current data is IRRELEVANT.
-    int length = MIN(sourceLength, [[source data] length]-sourceOffset);
+    NSUInteger length = MIN(sourceLength, [[source data] length]-sourceOffset);
     
     // 1.
     [data increaseLengthBy:length];
@@ -155,7 +155,7 @@ NSArray* bufferKeySequence = nil;
     const void* newBytes = [[source data] bytes];
     [data replaceBytesInRange:NSMakeRange(offset,length) withBytes:(newBytes+sourceOffset)];
     
-    return NUMINT(length);  
+    return NUMUINTEGER(length);
 }
 
 -(NSNumber*)copy:(id)args
@@ -164,7 +164,7 @@ NSArray* bufferKeySequence = nil;
     int offset;
     int sourceOffset;
     BOOL hasSourceOffset;
-    int sourceLength;
+    NSUInteger sourceLength;
     BOOL hasSourceLength;
     
     ENSURE_ARG_AT_INDEX(sourceBuffer, args, 0, TiBuffer);
@@ -177,12 +177,12 @@ NSArray* bufferKeySequence = nil;
     
     if (offset >= [data length]) {
         [self throwException:@"TiBoundsException"
-                   subreason:[NSString stringWithFormat:@"Offset %d is past buffer bounds (length %u)",offset,[data length]]
+                   subreason:[NSString stringWithFormat:@"Offset %d is past buffer bounds (length %lu)",offset,(unsigned long)[data length]]
                     location:CODELOCATION];
     }
     if (sourceOffset >= [[sourceBuffer data] length]) {
         [self throwException:@"TiBoundsException"
-                   subreason:[NSString stringWithFormat:@"Source offset %d is past source bounds (length %d)",sourceOffset,[[sourceBuffer data] length]]
+                   subreason:[NSString stringWithFormat:@"Source offset %d is past source bounds (length %lu)",sourceOffset,(unsigned long)[[sourceBuffer data] length]]
                     location:CODELOCATION];
     }
     
@@ -194,7 +194,7 @@ NSArray* bufferKeySequence = nil;
     NSRange replacement = NSMakeRange(offset, MIN(MIN(sourceLength, [data length]-offset), [[sourceBuffer data] length]-sourceOffset));
     [data replaceBytesInRange:replacement withBytes:(source+sourceOffset)];
     
-    return NUMINT(replacement.length);
+    return NUMUINTEGER(replacement.length);
 }
 
 -(TiBuffer*)clone:(id)args
@@ -212,18 +212,21 @@ NSArray* bufferKeySequence = nil;
     }
 
     int offsetVal = [TiUtils intValue:offset];
-    int lengthVal = [TiUtils intValue:length def:[data length]];
-    
+    BOOL valid = NO;
+    NSUInteger lengthVal = [TiUtils intValue:length def:0 valid:&valid];
+    if (!valid) {
+        lengthVal = [data length];
+    }
     // TODO: What do we do if offset goes past the end of the buffer?
     // For now, do the sensible thing... throw an exception.
     if (offsetVal > [data length]) {
         [self throwException:@"TiBoundsException"
-                   subreason:[NSString stringWithFormat:@"Offset %d extends past data length %u", offsetVal, [data length]]
+                   subreason:[NSString stringWithFormat:@"Offset %d extends past data length %lu", offsetVal, (unsigned long)[data length]]
                     location:CODELOCATION];
     }
     if (lengthVal > [data length]) {
         [self throwException:@"TiBoundsException"
-                   subreason:[NSString stringWithFormat:@"Length %d is longer than data (length %u)", lengthVal,[data length]]
+                   subreason:[NSString stringWithFormat:@"Length %lu is longer than data (length %lu)", (unsigned long)lengthVal,(unsigned long)[data length]]
                     location:CODELOCATION];
     }
     
@@ -258,18 +261,22 @@ NSArray* bufferKeySequence = nil;
     
     char byte = [TiUtils intValue:fillByte];
     int offsetVal = [TiUtils intValue:offset];
-    int lengthVal = [TiUtils intValue:length def:[data length]];
+    BOOL valid = NO;
+    NSUInteger lengthVal = [TiUtils intValue:length def:0 valid:&valid];
+    if (!valid) {
+        lengthVal = [data length];
+    }
     
     // TODO: What do we do if offset goes past the end of the buffer?
     // For now, do the sensible thing... throw an exception.
     if (offsetVal > [data length]) {
         [self throwException:@"TiBoundsException"
-                   subreason:[NSString stringWithFormat:@"Offset %d extends past data length %u", offsetVal, [data length]]
+                   subreason:[NSString stringWithFormat:@"Offset %d extends past data length %lu", offsetVal, (unsigned long)[data length]]
                     location:CODELOCATION];
     }
     if (lengthVal > [data length]) {
         [self throwException:@"TiBoundsException"
-                   subreason:[NSString stringWithFormat:@"Length %d is longer than data (length %u)", lengthVal, [data length]]
+                   subreason:[NSString stringWithFormat:@"Length %lu is longer than data (length %lu)", (unsigned long)lengthVal, (unsigned long)[data length]]
                     location:CODELOCATION];
     }
     
@@ -299,7 +306,7 @@ NSArray* bufferKeySequence = nil;
 -(TiBlob*)toBlob:(id)_void
 {
 	//TODO: Static analysis finds we're leaking the [data copy]. We should have an autorelease here, but for later.
-    return [[[TiBlob alloc] initWithData:[data copy] mimetype:@"application/octet-stream"] autorelease];
+    return [[[TiBlob alloc] initWithData:[[data copy] autorelease] mimetype:@"application/octet-stream"] autorelease];
 }
 
 -(NSString*)toString:(id)_void 
@@ -327,7 +334,7 @@ NSArray* bufferKeySequence = nil;
 
 -(NSNumber*)length
 {
-    return NUMINT([data length]);
+    return NUMUINTEGER([data length]);
 }
 
 #pragma mark "operator[] overload" (Array behavior)
@@ -339,7 +346,7 @@ NSArray* bufferKeySequence = nil;
     if (index != 0 || [key isEqualToString:@"0"]) {
         if (index < 0 || index >= [data length]) {
             [self throwException:@"TiBoundsException"
-                       subreason:[NSString stringWithFormat:@"Index %d out of bounds on buffer (length %u)", index, [data length]]
+                       subreason:[NSString stringWithFormat:@"Index %d out of bounds on buffer (length %lu)", index, (unsigned long)[data length]]
                         location:CODELOCATION];
         }
         if (![value respondsToSelector:@selector(charValue)]) {
@@ -363,7 +370,7 @@ NSArray* bufferKeySequence = nil;
     if (index != 0 || [key isEqualToString:@"0"]) {
         if (index < 0 || index >= [data length]) {
             [self throwException:@"TiBoundsException"
-                       subreason:[NSString stringWithFormat:@"Index %d out of bounds on buffer (length %u)", index, [data length]]
+                       subreason:[NSString stringWithFormat:@"Index %d out of bounds on buffer (length %lu)", index, (unsigned long)[data length]]
                         location:CODELOCATION];
         }
         

@@ -67,7 +67,7 @@ NSArray* dashboardKeySequence;
 	[super fireEvent:type withObject:obj withSource:source propagate:propagate];
 }
 
--(void)fireEvent:(NSString*)type withObject:(id)obj propagate:(BOOL)propagate reportSuccess:(BOOL)report errorCode:(int)code message:(NSString*)message;
+-(void)fireEvent:(NSString*)type withObject:(id)obj propagate:(BOOL)propagate reportSuccess:(BOOL)report errorCode:(NSInteger)code message:(NSString*)message;
 {
 	if ([type isEqual:@"click"])
 	{

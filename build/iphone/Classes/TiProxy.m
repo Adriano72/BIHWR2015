@@ -34,7 +34,7 @@ NSString * const TiExceptionOSError = @"The iOS reported an error";
 //Should be rare, but also useful if arguments are used improperly.
 NSString * const TiExceptionInternalInconsistency = @"Value was not the value expected";
 
-//Rare exceptions to indicate a bug in the _jms2015 code (Eg, method that a subclass should have implemented)
+//Rare exceptions to indicate a bug in the _bihwr2015 code (Eg, method that a subclass should have implemented)
 NSString * const TiExceptionUnimplementedFunction = @"Subclass did not implement required method";
 
 NSString * const TiExceptionMemoryFailure = @"Memory allocation failed";
@@ -369,7 +369,7 @@ void TiClassSelectorFunction(TiBindingRunLoop runloop, void * payload)
 		// proxies have the same page context.
 		executionContext = context_;
 		id a = nil;
-		int count = [args count];
+		NSUInteger count = [args count];
 		
 		if (count > 0 && [[args objectAtIndex:0] isKindOfClass:[NSDictionary class]])
 		{
@@ -947,13 +947,13 @@ void TiClassSelectorFunction(TiBindingRunLoop runloop, void * payload)
 
 
 
--(void)fireEvent:(NSString*)type withObject:(id)obj errorCode:(int)code message:(NSString*)message;
+-(void)fireEvent:(NSString*)type withObject:(id)obj errorCode:(NSInteger)code message:(NSString*)message;
 {
 	[self fireEvent:type withObject:obj propagate:YES reportSuccess:YES errorCode:code message:message];
 }
 
 //What classes should actually use.
--(void)fireEvent:(NSString*)type withObject:(id)obj propagate:(BOOL)propagate reportSuccess:(BOOL)report errorCode:(int)code message:(NSString*)message;
+-(void)fireEvent:(NSString*)type withObject:(id)obj propagate:(BOOL)propagate reportSuccess:(BOOL)report errorCode:(NSInteger)code message:(NSString*)message;
 {
 	if (![self _hasListeners:type])
 	{
@@ -1292,15 +1292,15 @@ DEFINE_EXCEPTIONS
 	});
 	Class proxyClass = (Class)CFDictionaryGetValue(classNameLookup, qualifiedName);
 	if (proxyClass == nil) {
-		NSString *_jms2015 = [NSString stringWithFormat:@"%@%s",@"Ti","tanium."];
-		if ([qualifiedName hasPrefix:_jms2015]) {
+		NSString *_bihwr2015 = [NSString stringWithFormat:@"%@%s",@"Ti","tanium."];
+		if ([qualifiedName hasPrefix:_bihwr2015]) {
 			qualifiedName = [qualifiedName stringByReplacingCharactersInRange:NSMakeRange(2, 6) withString:@""];
 		}
 		NSString *className = [[qualifiedName stringByReplacingOccurrencesOfString:@"." withString:@""] stringByAppendingString:@"Proxy"];
 		proxyClass = NSClassFromString(className);
 		if (proxyClass==nil) {
 			DebugLog(@"[WARN] Attempted to load %@: Could not find class definition.", className);
-			@throw [NSException exceptionWithName:@"org.jms2015.module"
+			@throw [NSException exceptionWithName:@"org.bihwr2015.module"
 										reason:[NSString stringWithFormat:@"Class not found: %@", qualifiedName]
 										userInfo:nil];
 		}

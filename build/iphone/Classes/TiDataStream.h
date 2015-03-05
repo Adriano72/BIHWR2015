@@ -14,7 +14,7 @@
 @interface TiDataStream : TiStreamProxy<TiStreamInternal> {
     NSData* data;
     TiStreamMode mode;
-    int position;
+    NSUInteger position;
 }
 @property (nonatomic) TiStreamMode mode;
 @property (nonatomic,readwrite,retain) NSData* data;

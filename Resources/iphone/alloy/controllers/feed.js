@@ -79,7 +79,7 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
-    $.feedWebView.url = "http://wccm.org/jms2015/feed.html";
+    $.feedWebView.url = "http://wccm.org/bi2015/feed.html";
     __defers["$.__views.feedWindow!open!doOpen"] && $.__views.feedWindow.addEventListener("open", doOpen);
     __defers["$.__views.__alloyId5!click!refreshLiveBlog"] && $.__views.__alloyId5.addEventListener("click", refreshLiveBlog);
     _.extend($, exports);

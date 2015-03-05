@@ -160,7 +160,7 @@ DEFINE_EXCEPTIONS
     
 	if ([self.proxy _hasListeners:@"change"])
 	{
-		NSDictionary *evt = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:position] forKey:@"index"];
+		NSDictionary *evt = [NSDictionary dictionaryWithObject:NUMINTEGER(position) forKey:@"index"];
 		[self.proxy fireEvent:@"change" withObject:evt];
 	}
 	
@@ -174,7 +174,7 @@ DEFINE_EXCEPTIONS
 	}
 }
 
--(void)queueImage:(id)img index:(int)index_
+-(void)queueImage:(id)img index:(NSUInteger)index_
 {
 	UIView *view = [[UIView alloc] initWithFrame:self.bounds];
 	UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -188,7 +188,7 @@ DEFINE_EXCEPTIONS
 	[spinner release];
 	
 	[images addObject:img];
-	[[OperationQueue sharedQueue] queue:@selector(loadImageInBackground:) target:self arg:[NSNumber numberWithInt:index_] after:nil on:nil ui:NO];
+	[[OperationQueue sharedQueue] queue:@selector(loadImageInBackground:) target:self arg:NUMUINTEGER(index_) after:nil on:nil ui:NO];
 }
 
 -(void)startTimerWithEvent:(NSString *)eventName
@@ -449,7 +449,7 @@ DEFINE_EXCEPTIONS
 -(void)loadDefaultImage:(CGSize)imageSize
 {
     // use a placeholder image - which the dev can specify with the
-    // defaultImage property or we'll provide the JMS2015 stock one
+    // defaultImage property or we'll provide the BIHWR2015 stock one
     // if not specified
     NSURL *defURL = [TiUtils toURL:[self.proxy valueForKey:@"defaultImage"] proxy:self.proxy];
     
@@ -720,7 +720,7 @@ DEFINE_EXCEPTIONS
 		[self container];
 		images = [[NSMutableArray alloc] initWithCapacity:[args count]];
 		loadTotal = [args count];
-		for (size_t c = 0; c < [args count]; c++)
+		for (NSUInteger c = 0; c < [args count]; c++)
 		{
 			[self queueImage:[args objectAtIndex:c] index:c];
 		}

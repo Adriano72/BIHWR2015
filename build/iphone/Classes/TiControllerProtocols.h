@@ -52,7 +52,7 @@
 @end
 
 /**
- Protocol for containment controller. Implemented by UIViewControllers that can host JMS2015 Windows
+ Protocol for containment controller. Implemented by UIViewControllers that can host BIHWR2015 Windows
  */
 @protocol TiControllerContainment <NSObject>
 @required

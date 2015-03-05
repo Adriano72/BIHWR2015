@@ -13,7 +13,7 @@
 @class TiHost;
 
 /**
- The base class for all JMS2015 modules
+ The base class for all BIHWR2015 modules
  */
 @interface TiModule : TiProxy 
 {
@@ -51,30 +51,30 @@
 // lifecycle
 
 /**
- JMS2015 Platform calls this method on startup.
+ BIHWR2015 Platform calls this method on startup.
  */
 -(void)startup;
 
 /**
- JMS2015 Platform calls this method on shutdown.
+ BIHWR2015 Platform calls this method on shutdown.
  @param sender The sender of the event.
  */
 -(void)shutdown:(id)sender;
 
 /**
- JMS2015 Platform calls this method on suspend.
+ BIHWR2015 Platform calls this method on suspend.
  @param sender The sender of the event.
  */
 -(void)suspend:(id)sender;
 
 /**
- JMS2015 Platform calls this method on entering background.
+ BIHWR2015 Platform calls this method on entering background.
  @param sender The sender of the event.
  */
 -(void)paused:(id)sender;
 
 /**
- JMS2015 Platform calls this method on resume.
+ BIHWR2015 Platform calls this method on resume.
  @param sender The sender of the event.
  */
 -(void)resume:(id)sender;

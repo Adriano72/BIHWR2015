@@ -505,12 +505,6 @@ DEFINE_EXCEPTIONS
 	}
 }
 
--(void)setTileBackground_:(id)image
-{
-    UIImage* tileImage = [TiUtils loadBackgroundImage:image forProxy:proxy];
-
-}
-
 -(void)setOpacity_:(id)opacity
 {
 	self.alpha = [TiUtils floatValue:opacity];
@@ -764,7 +758,7 @@ DEFINE_EXCEPTIONS
 
 /**
  This section of code for shadow support adapted from contributions by Martin Guillon
- See https://github.com/appcelerator/_jms2015_mobile/pull/2996
+ See https://github.com/appcelerator/_bihwr2015_mobile/pull/2996
  */
 -(CALayer *)shadowLayer
 {

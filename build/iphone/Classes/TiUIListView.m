@@ -185,6 +185,11 @@ static TiViewProxy * FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoin
         if ([TiUtils isIOS7OrGreater]) {
             _defaultSeparatorInsets = [_tableView separatorInset];
         }
+        
+        if ([TiUtils isIOS8OrGreater]) {
+            [_tableView setLayoutMargins:UIEdgeInsetsZero];
+        }
+        
     }
     if ([_tableView superview] != self) {
         [self addSubview:_tableView];
@@ -442,7 +447,7 @@ static TiViewProxy * FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoin
                                 filteredIndices = [[NSMutableArray alloc] init];
                             }
                             [filteredTitles addObject:theTitle];
-                            [filteredIndices addObject:[NSNumber numberWithInt:([_searchResults count] -1)]];
+                            [filteredIndices addObject:NUMUINTEGER([_searchResults count] -1)];
                         }
                     }
                 }
@@ -476,18 +481,19 @@ static TiViewProxy * FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoin
     if (searchActive) {
         [self buildResultsForSearchText];
     }
+    [_tableView reloadData];
     if ([searchController isActive]) {
         [[searchController searchResultsTableView] reloadData];
-    } else {
-        [_tableView reloadData];
-    }
+    } 
 }
 
 -(NSIndexPath*)pathForSearchPath:(NSIndexPath*)indexPath
 {
-    if (_searchResults != nil) {
+    if (_searchResults != nil && [_searchResults count] > indexPath.section) {
         NSArray* sectionResults = [_searchResults objectAtIndex:indexPath.section];
-        return [sectionResults objectAtIndex:indexPath.row];
+        if([sectionResults count] > indexPath.row) {
+            return [sectionResults objectAtIndex:indexPath.row];
+        }
     }
     return indexPath;
 }
@@ -788,6 +794,23 @@ static TiViewProxy * FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoin
     
 }
 
+-(void)cleanup:(id)unused
+{
+    if ([searchController isActive]) {
+        [searchController setActive:NO animated:NO];
+    }
+
+    if (_headerViewProxy != nil) {
+        [_headerViewProxy windowWillClose];
+        [_headerViewProxy windowDidClose];
+    }
+    
+    if (_footerViewProxy != nil) {
+        [_footerViewProxy windowWillClose];
+        [_footerViewProxy windowDidClose];
+    }
+}
+
 #pragma mark - SectionIndexTitle Support
 
 -(void)setSectionIndexTitles_:(id)args
@@ -856,7 +879,7 @@ static TiViewProxy * FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoin
     if (searchActive) {
         if (keepSectionsInSearch && ([_searchResults count] > 0) && (filteredTitles != nil) && (filteredIndices != nil) ) {
             // get the index for the title
-            int index = [filteredTitles indexOfObject:title];
+            NSUInteger index = [filteredTitles indexOfObject:title];
             if (index > 0 && (index < [filteredIndices count]) ) {
                 return [[filteredIndices objectAtIndex:index] intValue];
             }
@@ -868,7 +891,7 @@ static TiViewProxy * FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoin
     
     if ( (sectionTitles != nil) && (sectionIndices != nil) ) {
         // get the index for the title
-        int index = [sectionTitles indexOfObject:title];
+        NSUInteger index = [sectionTitles indexOfObject:title];
         if (index > 0 && (index < [sectionIndices count]) ) {
             return [[sectionIndices objectAtIndex:index] intValue];
         }
@@ -930,8 +953,8 @@ static TiViewProxy * FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoin
         
             NSMutableDictionary *eventObject = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                                 theSection, @"section",
-                                                NUMINT(indexPath.section), @"sectionIndex",
-                                                NUMINT(indexPath.row), @"itemIndex",
+                                                NUMINTEGER(indexPath.section), @"sectionIndex",
+                                                NUMINTEGER(indexPath.row), @"itemIndex",
                                                 nil];
             id propertiesValue = [theItem objectForKey:@"properties"];
             NSDictionary *properties = ([propertiesValue isKindOfClass:[NSDictionary class]]) ? propertiesValue : nil;
@@ -1069,10 +1092,10 @@ static TiViewProxy * FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoin
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
-    int fromSectionIndex = [fromIndexPath section];
-    int fromRowIndex = [fromIndexPath row];
-    int toSectionIndex = [toIndexPath section];
-    int toRowIndex = [toIndexPath row];
+    NSInteger fromSectionIndex = [fromIndexPath section];
+    NSInteger fromRowIndex = [fromIndexPath row];
+    NSInteger toSectionIndex = [toIndexPath section];
+    NSInteger toRowIndex = [toIndexPath row];
     
     
     
@@ -1096,11 +1119,11 @@ static TiViewProxy * FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoin
             
             NSMutableDictionary *eventObject = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                                 theSection, @"section",
-                                                NUMINT(fromSectionIndex), @"sectionIndex",
-                                                NUMINT(fromRowIndex), @"itemIndex",
+                                                NUMINTEGER(fromSectionIndex), @"sectionIndex",
+                                                NUMINTEGER(fromRowIndex), @"itemIndex",
                                                 theSection,@"targetSection",
-                                                NUMINT(toSectionIndex), @"targetSectionIndex",
-                                                NUMINT(toRowIndex), @"targetItemIndex",
+                                                NUMINTEGER(toSectionIndex), @"targetSectionIndex",
+                                                NUMINTEGER(toRowIndex), @"targetItemIndex",
                                                 nil];
             id propertiesValue = [theItem objectForKey:@"properties"];
             NSDictionary *properties = ([propertiesValue isKindOfClass:[NSDictionary class]]) ? propertiesValue : nil;
@@ -1135,11 +1158,11 @@ static TiViewProxy * FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoin
             
             NSMutableDictionary *eventObject = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                                 fromSection, @"section",
-                                                NUMINT(fromSectionIndex), @"sectionIndex",
-                                                NUMINT(fromRowIndex), @"itemIndex",
+                                                NUMINTEGER(fromSectionIndex), @"sectionIndex",
+                                                NUMINTEGER(fromRowIndex), @"itemIndex",
                                                 toSection,@"targetSection",
-                                                NUMINT(toSectionIndex), @"targetSectionIndex",
-                                                NUMINT(toRowIndex), @"targetItemIndex",
+                                                NUMINTEGER(toSectionIndex), @"targetSectionIndex",
+                                                NUMINTEGER(toRowIndex), @"targetItemIndex",
                                                 nil];
             id propertiesValue = [theItem objectForKey:@"properties"];
             NSDictionary *properties = ([propertiesValue isKindOfClass:[NSDictionary class]]) ? propertiesValue : nil;
@@ -1206,7 +1229,7 @@ static TiViewProxy * FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoin
     TiUIListSectionProxy* theSection = [self.listViewProxy sectionForIndex:realIndexPath.section];
     NSInteger maxItem = 0;
     
-    if (_searchResults != nil) {
+    if (_searchResults != nil && [_searchResults count] > indexPath.section) {
         NSArray* sectionResults = [_searchResults objectAtIndex:indexPath.section];
         maxItem = [sectionResults count];
     } else {
@@ -1236,6 +1259,11 @@ static TiViewProxy * FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoin
                 [cellProxy unarchiveFromTemplate:template];
             }
         }
+        
+        if ([TiUtils isIOS8OrGreater] && (tableView == _tableView)) {
+            [cell setLayoutMargins:UIEdgeInsetsZero];
+        }
+        
         [cellProxy release];
         [cell autorelease];
     }
@@ -1709,8 +1737,8 @@ static TiViewProxy * FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoin
 	NSDictionary *item = [section itemAtIndex:indexPath.row];
 	NSMutableDictionary *eventObject = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
 										section, @"section",
-										NUMINT(indexPath.section), @"sectionIndex",
-										NUMINT(indexPath.row), @"itemIndex",
+										NUMINTEGER(indexPath.section), @"sectionIndex",
+										NUMINTEGER(indexPath.row), @"itemIndex",
 										NUMBOOL(accessoryButtonTapped), @"accessoryClicked",
 										nil];
 	id propertiesValue = [item objectForKey:@"properties"];

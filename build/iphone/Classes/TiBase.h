@@ -60,7 +60,7 @@ extern "C" {
 	#define KMETHOD_DEBUG MEMORY_DEBUG
 #endif
 
-// in simulator we redefine to format for JMS2015 Developer console
+// in simulator we redefine to format for BIHWR2015 Developer console
 
 
 #define TI_INLINE static __inline__
@@ -265,7 +265,7 @@ else if (![x isKindOfClass:t])	\
 #define ENSURE_ARG_COUNT(x,c) \
 if ([x count]<c)\
 {\
-[self throwException:TiExceptionNotEnoughArguments subreason:[NSString stringWithFormat:@"expected %d arguments, received: %d",c,[x count]] location:CODELOCATION]; \
+[self throwException:TiExceptionNotEnoughArguments subreason:[NSString stringWithFormat:@"expected %d arguments, received: %lu",c,(unsigned long)[x count]] location:CODELOCATION]; \
 }\
 
 #define VALUE_AT_INDEX_OR_NIL(x,i)	\
@@ -295,7 +295,7 @@ __typeof__(minX) __minX = (minX);	\
 __typeof__(maxX) __maxX = (maxX);	\
 if ((__x<__minX) || (__x>__maxX)) \
 { \
-[self throwException:TiExceptionRangeError subreason:[NSString stringWithFormat:@"%d was not >= %d and <= %d",__x,__maxX,__minX] location:CODELOCATION]; \
+[self throwException:TiExceptionRangeError subreason:[NSString stringWithFormat:@"%lld was not >= %lld and <= %lld",(long long)__x,(long long)__maxX,(long long)__minX] location:CODELOCATION]; \
 }\
 }
 
@@ -309,13 +309,13 @@ void TiExceptionThrowWithNameAndReason(NSString *exceptionName, NSString *reason
 #define DEFINE_EXCEPTIONS \
 - (void) throwException:(NSString *) reason subreason:(NSString*)subreason location:(NSString *)location\
 {\
-	NSString * exceptionName = [@"org.jms2015." stringByAppendingString:NSStringFromClass([self class])];\
+	NSString * exceptionName = [@"org.bihwr2015." stringByAppendingString:NSStringFromClass([self class])];\
 	TiExceptionThrowWithNameAndReason(exceptionName,reason,subreason,location);\
 }\
 \
 + (void) throwException:(NSString *) reason subreason:(NSString*)subreason location:(NSString *)location\
 {\
-	NSString * exceptionName = @"org.jms2015";\
+	NSString * exceptionName = @"org.bihwr2015";\
 	TiExceptionThrowWithNameAndReason(exceptionName,reason,subreason,location);\
 }\
 
@@ -399,11 +399,17 @@ DebugLog(@"[WARN] Ti%@.%@ DEPRECATED in %@, in favor of %@.",@"tanium",api,in,ne
 #define NUMLONG(x) \
 [NSNumber numberWithLong:x]\
 
+#define NUMULONG(x) \
+[NSNumber numberWithUnsignedLong:x]\
+
 #define NUMLONGLONG(x) \
 [NSNumber numberWithLongLong:x]\
 
 #define NUMINT(x) \
 [NSNumber numberWithInt:x]\
+
+#define NUMUINT(x) \
+[NSNumber numberWithUnsignedInt:x]\
 
 #define NUMDOUBLE(x) \
 [NSNumber numberWithDouble:x]\
@@ -411,32 +417,37 @@ DebugLog(@"[WARN] Ti%@.%@ DEPRECATED in %@, in favor of %@.",@"tanium",api,in,ne
 #define NUMFLOAT(x) \
 [NSNumber numberWithFloat:x]\
 
+#define NUMINTEGER(x) \
+[NSNumber numberWithInteger:x]\
+
+#define NUMUINTEGER(x) \
+[NSNumber numberWithUnsignedInteger:x]\
 
 
  //MUST BE NEGATIVE, as it inhabits the same space as UIBarButtonSystemItem
 enum {
-	UIJMS2015NativeItemNone = -1, 
-	UIJMS2015NativeItemSpinner = -2,
-	UIJMS2015NativeItemProgressBar = -3,
+	UIBIHWR2015NativeItemNone = -1, 
+	UIBIHWR2015NativeItemSpinner = -2,
+	UIBIHWR2015NativeItemProgressBar = -3,
 	
-	UIJMS2015NativeItemSlider = -4,
-	UIJMS2015NativeItemSwitch = -5,
-	UIJMS2015NativeItemMultiButton = -6,
-	UIJMS2015NativeItemSegmented = -7,
+	UIBIHWR2015NativeItemSlider = -4,
+	UIBIHWR2015NativeItemSwitch = -5,
+	UIBIHWR2015NativeItemMultiButton = -6,
+	UIBIHWR2015NativeItemSegmented = -7,
 	
-	UIJMS2015NativeItemTextView = -8,
-	UIJMS2015NativeItemTextField = -9,
-	UIJMS2015NativeItemSearchBar = -10,
+	UIBIHWR2015NativeItemTextView = -8,
+	UIBIHWR2015NativeItemTextField = -9,
+	UIBIHWR2015NativeItemSearchBar = -10,
 	
-	UIJMS2015NativeItemPicker = -11,
-	UIJMS2015NativeItemDatePicker = -12,
+	UIBIHWR2015NativeItemPicker = -11,
+	UIBIHWR2015NativeItemDatePicker = -12,
 	
-	UIJMS2015NativeItemInfoLight = -13,
-	UIJMS2015NativeItemInfoDark = -14,
+	UIBIHWR2015NativeItemInfoLight = -13,
+	UIBIHWR2015NativeItemInfoDark = -14,
 	
-	UIJMS2015NativeItemDisclosure = -15,
+	UIBIHWR2015NativeItemDisclosure = -15,
 	
-	UIJMS2015NativeItemContactAdd = -16
+	UIBIHWR2015NativeItemContactAdd = -16
 };
 
 
@@ -617,7 +628,7 @@ void incrementKrollCounter();
 void decrementKrollCounter();
     
 /**
- *	TiThreadPerformOnMainThread should replace all JMS2015 instances of
+ *	TiThreadPerformOnMainThread should replace all BIHWR2015 instances of
  *	performSelectorOnMainThread, ESPECIALLY if wait is to be yes. That way,
  *	exceptional-case main thread activities can process them outside of the
  *	standard event loop.

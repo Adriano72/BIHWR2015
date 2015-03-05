@@ -11,10 +11,10 @@
 #import "TiProxy.h"
 @class TiViewProxy;
 
-@interface TiUIOptionDialogProxy : TiProxy<UIActionSheetDelegate> {
+@interface TiUIOptionDialogProxy : TiProxy<UIActionSheetDelegate,UIPopoverPresentationControllerDelegate> {
 
     UIActionSheet *actionSheet;
-//We need to hold onto this information for whenever the status bar rotates.
+    UIAlertController* alertController;
     TiViewProxy *dialogView;
     CGRect dialogRect;
     BOOL animated;
@@ -22,6 +22,8 @@
     BOOL showDialog;
     BOOL persistentFlag;
     BOOL forceOpaqueBackground;
+    int cancelButtonIndex;
+    int destructiveButtonIndex;
 }
 
 @property(nonatomic,retain,readwrite)	TiViewProxy *dialogView;

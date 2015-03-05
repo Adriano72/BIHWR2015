@@ -43,4 +43,6 @@
 -(void)unregisterContext:(id<TiEvaluator>)context forToken:(NSString*)token;
 -(id<TiEvaluator>)contextForToken:(NSString*)token;
 
+-(KrollBridge*)krollBridge;
+
 @end

@@ -21,12 +21,6 @@
 {
 	volume = [TiUtils doubleValue:@"volume" properties:properties def:1.0];
 	url = [[TiUtils toURL:[properties objectForKey:@"url"] proxy:self] retain];
-    int initialMode = [TiUtils intValue:@"audioSessionMode" 
-                             properties:properties
-                                    def:0];
-	if (initialMode) {
-		[self setAudioSessionMode:[NSNumber numberWithInt:initialMode]];
-	}
 }
 
 -(void)_destroy
@@ -202,7 +196,7 @@ PLAYER_PROP_DOUBLE(state,state);
 
 -(void)setBufferSize:(NSNumber*)bufferSize_
 {
-    bufferSize = [bufferSize_ unsignedIntegerValue];
+    bufferSize = [bufferSize_ unsignedIntValue];
     if (player != nil) {
         [player setBufferSize:bufferSize];
     }
@@ -249,7 +243,7 @@ PLAYER_PROP_DOUBLE(state,state);
 	// indicate we're going to start playing
 	if (![[TiMediaAudioSession sharedSession] canPlayback]) {
 		[self throwException:@"Improper audio session mode for playback"
-				   subreason:[[NSNumber numberWithUnsignedInt:[[TiMediaAudioSession sharedSession] sessionMode]] description]
+				   subreason:[[TiMediaAudioSession sharedSession] sessionMode]
 					location:CODELOCATION];
 	}
 	
@@ -297,22 +291,6 @@ MAKE_SYSTEM_PROP(STATE_STOPPING,AS_STOPPING);
 MAKE_SYSTEM_PROP(STATE_STOPPED,AS_STOPPED);
 MAKE_SYSTEM_PROP(STATE_PAUSED,AS_PAUSED);
 
--(void)setAudioSessionMode:(NSNumber*)mode
-{
-    UInt32 newMode = [mode unsignedIntegerValue]; // Close as we can get to UInt32
-    if (newMode == kAudioSessionCategory_RecordAudio) {
-        DebugLog(@"[WARN] Invalid mode for audio player... setting to default.");
-        newMode = kAudioSessionCategory_SoloAmbientSound;
-    }
-	DebugLog(@"[WARN] 'Ti.Media.AudioPlayer.audioSessionMode' is deprecated; use 'Ti.Media.audioSessionMode'");
-	[[TiMediaAudioSession sharedSession] setSessionMode:newMode];
-}
-
--(NSNumber*)audioSessionMode
-{
-	DebugLog(@"[WARN] 'Ti.Media.AudioPlayer.audioSessionMode' is deprecated; use 'Ti.Media.audioSessionMode'");	
-    return [NSNumber numberWithUnsignedInteger:[[TiMediaAudioSession sharedSession] sessionMode]];
-}
 
 -(NSString*)stateToString:(int)state
 {

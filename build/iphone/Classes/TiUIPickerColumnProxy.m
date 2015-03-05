@@ -54,7 +54,7 @@
 	{
 		[rows addObject:row];
 	}
-	return NUMINT([rows count]-1);
+	return NUMUINTEGER([rows count]-1);
 }
 
 -(void)removeRow:(id)row

@@ -24,7 +24,7 @@
 -(NSArray*)data;
 //Sections and Data are the sanitized version.
 @property(nonatomic,readwrite,copy) NSArray *sections;
--(int)sectionCount;
+-(NSUInteger)sectionCount;
 
 #pragma mark NON-JS functionality
 //internalSections is until TODO: Stop JS from using ValueForKey

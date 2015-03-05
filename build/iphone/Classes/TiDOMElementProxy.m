@@ -150,8 +150,8 @@
 {
 	ENSURE_ARG_COUNT(args, 2);
 
-	NSString *name;
-	NSString *val;
+	NSString *name = nil;
+	NSString *val = nil;
 	
 	ENSURE_ARG_AT_INDEX(name, args, 0, NSString);
 	ENSURE_ARG_OR_NIL_AT_INDEX(val, args, 1, NSString);
@@ -558,8 +558,8 @@
 -(id)insertBefore:(id)args
 {
 	ENSURE_ARG_COUNT(args, 2);
-	TiDOMNodeProxy* newChild;
-	TiDOMNodeProxy* refChild;
+	TiDOMNodeProxy* newChild = nil;
+	TiDOMNodeProxy* refChild = nil;
     
 	ENSURE_ARG_AT_INDEX(newChild, args, 0, TiDOMNodeProxy);
 	ENSURE_ARG_AT_INDEX(refChild, args, 1, TiDOMNodeProxy);
@@ -569,15 +569,12 @@
 	if (newNodePtr == refNodePtr)
 		return newChild;
 	
-	TiDOMNodeListProxy* nodeList = [self childNodes];
+	[[self node]releaseCachedValues];
+	NSArray* theChildren = [[self node] children];
 	
-	
-	TiDOMNodeProxy* cur= nil;
-	int max = [TiUtils intValue:[nodeList length]];
 	BOOL found = NO;
-	for (int i=0; i<max && !found; i++) {
-		cur = (TiDOMNodeProxy*)[nodeList item:[NSNumber numberWithInt:i]];
-		if ([[cur node]XMLNode] == refNodePtr) {
+	for (GDataXMLNode* cur in theChildren) {
+		if ([cur XMLNode] == refNodePtr) {
 			found = YES;
 		}
 	}
@@ -616,8 +613,8 @@
 -(id)replaceChild:(id)args
 {
 	ENSURE_ARG_COUNT(args, 2);
-	TiDOMNodeProxy* newChild;
-	TiDOMNodeProxy* refChild;
+	TiDOMNodeProxy* newChild = nil;
+	TiDOMNodeProxy* refChild = nil;
     
 	ENSURE_ARG_AT_INDEX(newChild, args, 0, TiDOMNodeProxy);
 	ENSURE_ARG_AT_INDEX(refChild, args, 1, TiDOMNodeProxy);
@@ -627,15 +624,12 @@
 	if (newNodePtr == refNodePtr)
 		return refChild;
 	
-	TiDOMNodeListProxy* nodeList = [self childNodes];
-	
-	
-	TiDOMNodeProxy* cur= nil;
-	int max = [TiUtils intValue:[nodeList length]];
+	[[self node]releaseCachedValues];
+	NSArray* theChildren = [[self node] children];
+    
 	BOOL found = NO;
-	for (int i=0; i<max && !found; i++) {
-		cur = (TiDOMNodeProxy*)[nodeList item:[NSNumber numberWithInt:i]];
-		if ([[cur node]XMLNode] == refNodePtr) {
+	for (GDataXMLNode* cur in theChildren) {
+		if ([cur XMLNode] == refNodePtr) {
 			found = YES;
 		}
 	}
@@ -679,13 +673,11 @@
 	
 	xmlNodePtr refNodePtr = [[oldChild node]XMLNode];
 	
-	TiDOMNodeListProxy* nodeList = [self childNodes];
-	TiDOMNodeProxy*cur = nil;
-	int max = [TiUtils intValue:[nodeList length]];
+	[[self node]releaseCachedValues];
+	NSArray* theChildren = [[self node] children];
 	BOOL found = NO;
-	for (int i=0; i<max && !found; i++) {
-		cur = (TiDOMNodeProxy*)[nodeList item:[NSNumber numberWithInt:i]];
-		if ([[cur node]XMLNode] == refNodePtr) {
+	for (GDataXMLNode* cur in theChildren) {
+		if ([cur XMLNode] == refNodePtr) {
 			found = YES;
 		}
 	}

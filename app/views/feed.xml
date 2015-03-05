@@ -1,6 +1,6 @@
 <Alloy>
 	<Tab id="feedTab" title=" Live Blog ">
-		<Window id="feedWindow" class="topBar" title="JMS 2015 Live Blog" onOpen="doOpen">
+		<Window id="feedWindow" class="topBar" title="Bere Island Retreat Live Blog" onOpen="doOpen">
 			<TitleControl platform="ios">
 				<Label class="titolo">The John Main Seminar 2015</Label>
 			</TitleControl>

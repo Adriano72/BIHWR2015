@@ -259,7 +259,7 @@
 {
 	if (database!=nil)
 	{
-		return NUMINT([database lastInsertRowId]);
+		return NUMLONGLONG([database lastInsertRowId]);
 	}
 	return NUMINT(0);
 }
@@ -279,7 +279,7 @@
 }
 -(TiFilesystemFileProxy*)file
 {
-	return [[TiFilesystemFileProxy alloc] initWithFile:[self dbPath:name]];
+	return [[[TiFilesystemFileProxy alloc] initWithFile:[self dbPath:name]] autorelease];
 }
 
 #pragma mark Internal

@@ -31,6 +31,7 @@ extern BOOL const TI_APPLICATION_ANALYTICS;
 
 -(id)initWithCallback:(KrollCallback*)callback_ context:(id<TiEvaluator>)context_
 {
+	//Ignore analyzer warning here. Delegate will call autorelease onLoad or onError.
 	if (self = [super init])
 	{
 		callback = [callback_ retain];
@@ -315,23 +316,20 @@ extern BOOL const TI_APPLICATION_ANALYTICS;
                 NSLog(@"[ERROR] The keys NSLocationAlwaysUsageDescription or NSLocationWhenInUseUsageDescription are not defined in your tiapp.xml.  Starting with iOS8 this is required.");
             }
         }else{
-            if (purpose==nil)
+            if (purpose!=nil)
             {
-                DebugLog(@"[WARN] The Ti.Geolocation.purpose property must be set.");
-            }
-            else
-            {
-                [locationManager setPurpose:purpose];
+                DebugLog(@"[WARN] The Ti.Geolocation.purpose property is deprecated. On iOS6 and above include the NSLocationUsageDescription key in your Info.plist");
+                if ([locationManager respondsToSelector:@selector(setPurpose:)]) {
+                    [locationManager performSelector:@selector(setPurpose:) withObject:purpose];
+                }
             }
         }
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
         if ([TiUtils isIOS6OrGreater]) {
             locationManager.activityType = activityType;
             locationManager.pausesLocationUpdatesAutomatically = pauseLocationUpdateAutomatically;
             
         }
-#endif
 
 		if ([CLLocationManager locationServicesEnabled]== NO) 
 		{
@@ -953,12 +951,16 @@ MAKE_SYSTEM_PROP(ACTIVITYTYPE_OTHER_NAVIGATION, CLActivityTypeOtherNavigation);
 
 -(void)setPurpose:(NSString *)reason
 {
-	ENSURE_UI_THREAD(setPurpose,reason);
-	RELEASE_TO_NIL(purpose);
-	purpose = [reason retain];
+    ENSURE_UI_THREAD(setPurpose,reason);
+    RELEASE_TO_NIL(purpose);
+    purpose = [reason retain];
+    DebugLog(@"[WARN] The Ti.Geolocation.purpose property is deprecated. On iOS6 and above include the NSLocationUsageDescription key in your Info.plist");
+    
 	if (locationManager!=nil)
 	{
-		[locationManager setPurpose:purpose];
+        if ([locationManager respondsToSelector:@selector(setPurpose:)]) {
+            [locationManager performSelector:@selector(setPurpose:) withObject:purpose];
+        }
 	}
 	
 }

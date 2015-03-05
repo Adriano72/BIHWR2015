@@ -89,7 +89,7 @@
         BOOL valid = NO;
         BOOL isString = [obj isKindOfClass:[NSString class]];
         if (!isString || (isString && [self isParseableString:obj ofType:type])) {
-            result = NUMINT([TiUtils intValue:obj def:NSNotFound valid:&valid]);
+            result = NUMINT([TiUtils intValue:obj def:0 valid:&valid]);
         }
         if (!valid) {
             [self throwException:TiExceptionInvalidType subreason:[NSString stringWithFormat:@"Couldn't cast from %@ to int", [obj class]] location:CODELOCATION];
@@ -192,8 +192,8 @@
 	ENSURE_SINGLE_ARG(args,NSObject);
 	if (results != nil)
 	{
-		int requestedIndex = [TiUtils intValue:args def:NSNotFound];
-		if (requestedIndex == NSNotFound)
+		int requestedIndex = [TiUtils intValue:args def:INT_MAX];
+		if (requestedIndex == INT_MAX)
 		{
 			[self throwException:TiExceptionInvalidType subreason:nil location:CODELOCATION];
 		}
@@ -210,7 +210,7 @@
 {
 	if (results!=nil)
 	{
-		return NUMINT([[results fieldNames] count]);
+		return NUMUINTEGER([[results fieldNames] count]);
 	}
 	return NUMINT(0);
 }
@@ -234,7 +234,6 @@
 		}
 		// we cache it
 		rowCount = [results fullCount];
-		reset = NO;
 		[results next];
 		return NUMINT(rowCount); 
 	}

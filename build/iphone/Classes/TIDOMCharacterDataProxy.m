@@ -44,8 +44,8 @@
 		return [NSNumber numberWithInt:0];
 	}
 	xmlChar * stringData = realNode->content;
-	int result = (stringData == NULL) ? 0 : strlen((char *)stringData);
-	return [NSNumber numberWithInt:result];
+	NSUInteger result = (stringData == NULL) ? 0 : strlen((char *)stringData);
+	return NUMUINTEGER(result);
 }
 
 -(NSString *) substringData:(id)args
@@ -56,7 +56,7 @@
 	ENSURE_INT_AT_INDEX(countArg, args, 1);
 
 	NSString * ourData = [self data];
-	int dataLength = [ourData length];
+	NSUInteger dataLength = [ourData length];
 	ENSURE_VALUE_RANGE(offsetArg, 0, dataLength);
 	ENSURE_VALUE_RANGE(countArg, 0, INT_MAX);
 	return [ourData substringWithRange:NSMakeRange(offsetArg,MIN(countArg, dataLength-offsetArg))];
@@ -65,7 +65,7 @@
 -(void)	appendData:(id)args
 {
 	ENSURE_ARG_COUNT(args, 1);
-	NSString * newData;
+	NSString * newData = nil;
 	ENSURE_ARG_AT_INDEX(newData, args, 0, NSString);
 
 	[node setStringValue:[[node stringValue] stringByAppendingString:newData]];
@@ -75,12 +75,12 @@
 {
 	ENSURE_ARG_COUNT(args, 2);
 	int offsetArg;
-	NSString * newData;
+	NSString * newData = nil;
 	ENSURE_INT_AT_INDEX(offsetArg, args, 0);
 	ENSURE_ARG_AT_INDEX(newData, args, 1, NSString);
 
 	NSString * ourData = [self data];
-	int dataLength = [ourData length];
+	NSUInteger dataLength = [ourData length];
 	ENSURE_VALUE_RANGE(offsetArg, 0, dataLength);
     NSString *result;
     
@@ -107,7 +107,7 @@
 	ENSURE_INT_AT_INDEX(countArg, args, 1);
 	
 	NSString * ourData = [self data];
-	int dataLength = [ourData length];
+	NSUInteger dataLength = [ourData length];
 	ENSURE_VALUE_RANGE(offsetArg, 0, dataLength);
 	ENSURE_VALUE_RANGE(countArg, 0, INT_MAX);
 
@@ -122,13 +122,13 @@
 {
 	ENSURE_ARG_COUNT(args, 2);
 	int offsetArg, countArg;
-	NSString * newData;
+	NSString * newData = nil;
 	ENSURE_INT_AT_INDEX(offsetArg, args, 0);
 	ENSURE_INT_AT_INDEX(countArg, args, 1);
 	ENSURE_ARG_AT_INDEX(newData, args, 2, NSString);
 	
 	NSString * ourData = [self data];
-	int dataLength = [ourData length];
+	NSUInteger dataLength = [ourData length];
 	ENSURE_VALUE_RANGE(offsetArg, 0, dataLength);
 	ENSURE_VALUE_RANGE(countArg, 0, INT_MAX);
 	

@@ -39,7 +39,7 @@ typedef enum {
 } EncodingError;
 
 /**
- JMS2015 orientation flags.
+ BIHWR2015 orientation flags.
  */
 typedef enum
 {
@@ -81,24 +81,13 @@ typedef enum
 #define TI_ORIENTATION_ALLOWED(flag,bit)	(flag & (1<<bit))
 #define TI_ORIENTATION_SET(flag,bit)		(flag |= (1<<bit))
 
-/**
- The class represent root controller in a view hierarchy.
- */
-@protocol TiUIViewControllerIOS7Support <NSObject>
-/* Legacy support: UIViewController methods introduced in iOS 7.0
- * For those still on 5.x and 6.x, we have to declare these methods so the
- * the compiler knows the right return datatypes.
- */
-@optional
-@property(nonatomic,assign) NSUInteger edgesForExtendedLayout; // Defaults to UIRectEdgeAll on iOS7. We will set to UIRectEdgeNone
-@property(nonatomic,assign) BOOL extendedLayoutIncludesOpaqueBars; // Defaults to NO, but bars are translucent by default on 7_0.
-@property(nonatomic,assign) BOOL automaticallyAdjustsScrollViewInsets; // Defaults to NO
+
+@protocol VolumeSupport <NSObject>
+@required
+-(void)setVolume:(float)volume;
+-(float)volume;
 @end
 
-@protocol UIImageIOS7Support <NSObject>
-@optional
-- (UIImage *)imageWithRenderingMode:(NSInteger)renderingMode;
-@end
 
 /**
  Utilities class.
@@ -446,8 +435,6 @@ typedef enum
 
 +(WebFont*)fontValue:(NSDictionary*)properties def:(WebFont*)def;
 
-+(int)intValue:(id)value def:(int)def;
-
 +(UIDeviceOrientation)orientationValue:(id)value def:(UIDeviceOrientation)def;
 
 +(int)intValue:(NSString*)name properties:(NSDictionary*)props;
@@ -482,10 +469,12 @@ typedef enum
 
 +(TiScriptError*) scriptErrorValue:(id)value;
 
-+(UITextAlignment)textAlignmentValue:(id)alignment;
++(NSTextAlignment)textAlignmentValue:(id)alignment;
 
 +(NSString*)jsonStringify:(id)value;
 +(id)jsonParse:(NSString*)value;
+
++(NSString*)currentArchitecture;
 
 +(NSString*)jsonStringify:(id)value error:(NSError**)error;
 +(id)jsonParse:(NSString*)value error:(NSError**)error;;
@@ -600,9 +589,11 @@ typedef enum
  @return _YES_ if the current device has HD retina display, _NO_ otherwise.
  */
 +(BOOL)isRetinaHDDisplay;
-+(void)configureController:(id)controller withObject:(id)object;
++(void)setVolume:(float)volume onObject:(id)object;
++(float)volumeFromObject:(id)theObject default:(float)def;
++(void)configureController:(UIViewController*)controller withObject:(id)object;
 
-+(CGRect)frameForController:(id)theController;
++(CGRect)frameForController:(UIViewController*)theController;
 
 +(int)dpi;
 
@@ -610,9 +601,9 @@ typedef enum
 
 +(TiDataType)constantToType:(NSString*)typeStr;
 
-+(size_t)dataSize:(TiDataType)type;
++(int)dataSize:(TiDataType)type;
 
-+(int)encodeString:(NSString*)string toBuffer:(TiBuffer*)dest charset:(NSString*)charset offset:(int)destPosition sourceOffset:(int)srcPosition length:(int)srcLength;
++(int)encodeString:(NSString*)string toBuffer:(TiBuffer*)dest charset:(NSString*)charset offset:(NSUInteger)destPosition sourceOffset:(NSUInteger)srcPosition length:(NSUInteger)srcLength;
 
 +(int)encodeNumber:(NSNumber*)data toBuffer:(TiBuffer*)dest offset:(int)position type:(NSString*)type endianness:(CFByteOrder)byteOrder;
 
@@ -651,6 +642,6 @@ typedef enum
  @param code The integer representing an error. Use 0 for a success, and -1 for an unknown error.
  @param message The optional string describing the error.
  */
-+ (NSMutableDictionary *)dictionaryWithCode:(int)code message:(NSString *)message;
++ (NSMutableDictionary *)dictionaryWithCode:(NSInteger)code message:(NSString *)message;
 
 @end

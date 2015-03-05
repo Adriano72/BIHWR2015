@@ -51,7 +51,7 @@ static ClipboardType mimeTypeToDataType(NSString *mimeType)
 
 static NSString *mimeTypeToUTType(NSString *mimeType)
 {
-	NSString *uti = (NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, (CFStringRef)mimeType, NULL);
+	NSString *uti = [(NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, (CFStringRef)mimeType, NULL) autorelease];
 	if (uti == nil) {
 		// Should we do this? Lets us copy/paste custom data, anyway.
 		uti = mimeType;
@@ -158,6 +158,7 @@ static NSString *mimeTypeToUTType(NSString *mimeType)
 		default:
 		{
 			NSData *data = [board dataForPasteboardType: mimeTypeToUTType(mimeType)];
+
 			if (data) {
 				return [[[TiBlob alloc] initWithData: data mimetype: mimeType] autorelease];
 			} else {
@@ -273,7 +274,7 @@ static NSString *mimeTypeToUTType(NSString *mimeType)
 			{
 				raw = [[TiUtils stringValue: data] dataUsingEncoding: NSUTF8StringEncoding];
 			}
-			
+
 			[board setData: raw forPasteboardType: mimeTypeToUTType(mimeType)];
 		}
 	}

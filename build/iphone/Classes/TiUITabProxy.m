@@ -143,6 +143,18 @@
 -(void)setTabGroup:(TiUITabGroupProxy*)proxy
 {
     tabGroup = proxy;
+    /*
+     TIMOB-18155. TabProxy now remembers itself instead of the TabGroup.
+     In the TabGroupProxy, when you remember a tab it gets written to the
+     property table with a key based on proxy hash. However when we change the
+     activeTab property of the TabGroup, it is possible for this property to be
+     deleted. So the JSObject is unprotected and can get Garbage Collected.
+     */
+    if (tabGroup) {
+        [self rememberSelf];
+    } else {
+        [self forgetSelf];
+    }
     if (controller != nil) {
         [TiUtils configureController:controller withObject:tabGroup];
     }
@@ -512,51 +524,23 @@
 	[rootController setTitle:title];
 	UITabBarItem *ourItem = nil;
     
-    BOOL imageIsMask = NO;
-    
-    if ([TiUtils isIOS7OrGreater]) {
-        
-        //CLEAN UP CODE WHEN WE UPGRADE MIN XCODE VERSION TO XCODE5
-        if (image != nil) {
-            if ([image respondsToSelector:@selector(imageWithRenderingMode:)]) {
-                NSInteger theMode = iconOriginal ? 1/*UIImageRenderingModeAlwaysOriginal*/ : 2/*UIImageRenderingModeAlwaysTemplate*/;
-                image = [(id<UIImageIOS7Support>)image imageWithRenderingMode:theMode];
-            }
+    if (image != nil) {
+        if ([image respondsToSelector:@selector(imageWithRenderingMode:)]) {
+            NSInteger theMode = iconOriginal ? UIImageRenderingModeAlwaysOriginal : UIImageRenderingModeAlwaysTemplate;
+            image = [image imageWithRenderingMode:theMode];
         }
-        if (activeImage != nil) {
-            if ([activeImage respondsToSelector:@selector(imageWithRenderingMode:)]) {
-                NSInteger theMode = activeIconOriginal ? 1/*UIImageRenderingModeAlwaysOriginal*/ : 2/*UIImageRenderingModeAlwaysTemplate*/;
-                activeImage = [(id<UIImageIOS7Support>)activeImage imageWithRenderingMode:theMode];
-            }
+    }
+    if (activeImage != nil) {
+        if ([activeImage respondsToSelector:@selector(imageWithRenderingMode:)]) {
+            NSInteger theMode = activeIconOriginal ? UIImageRenderingModeAlwaysOriginal : UIImageRenderingModeAlwaysTemplate;
+            activeImage = [activeImage imageWithRenderingMode:theMode];
         }
-        
-        systemTab = NO;
-        ourItem = [[[UITabBarItem alloc] initWithTitle:title image:image selectedImage:activeImage] autorelease];
-        [ourItem setBadgeValue:badgeValue];
-        [rootController setTabBarItem:ourItem];
-        return;
     }
     
-	if (!systemTab)
-	{
-		ourItem = [rootController tabBarItem];
-		[ourItem setTitle:title];
-		[ourItem setImage:image];
-	}
-
-	if (ourItem == nil)
-	{
-		systemTab = NO;
-		ourItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
-		[rootController setTabBarItem:ourItem];
-	}
-
-	if (activeImage != nil)
-	{
-		[ourItem setFinishedSelectedImage:activeImage withFinishedUnselectedImage:image];
-	}
-	
-	[ourItem setBadgeValue:badgeValue];
+    systemTab = NO;
+    ourItem = [[[UITabBarItem alloc] initWithTitle:title image:image selectedImage:activeImage] autorelease];
+    [ourItem setBadgeValue:badgeValue];
+    [rootController setTabBarItem:ourItem];
 }
 
 -(void)setTitle:(id)title
@@ -713,7 +697,7 @@
 
 -(TiOrientationFlags)orientationFlags
 {
-	UIViewController * modalController = [controller modalViewController];
+	UIViewController * modalController = [controller presentedViewController];
 	if ([modalController conformsToProtocol:@protocol(TiOrientationController)])
 	{
 		return [(id<TiOrientationController>)modalController orientationFlags];

@@ -9,22 +9,30 @@
 #ifdef USE_TI_MEDIA
 
 #import "TiProxy.h"
-#import "AQRecorder.h"
 #import "TiFile.h"
+#import <AVFoundation/AVAudioRecorder.h>
 
-@interface TiMediaAudioRecorderProxy : TiProxy {
+typedef enum
+{
+    RecordStarted = 0,
+    RecordStopped = 1,
+    RecordPaused = 2
+} RecorderState;
+
+@interface TiMediaAudioRecorderProxy : TiProxy<AVAudioRecorderDelegate> {
 @private
-	AQRecorder *recorder;
-	TiFile *file;
-	NSNumber *compression;
-	NSNumber *format;
+    AVAudioRecorder *recorder;
+    TiFile *file;
+    NSNumber *compression;
+    NSNumber *format;
+    RecorderState curState;
 }
 
 #pragma mark Public APIs
 
-@property(nonatomic,readonly) BOOL recording;
-@property(nonatomic,readonly) BOOL stopped;
-@property(nonatomic,readonly) BOOL paused;
+@property(nonatomic,readonly) NSNumber* recording;
+@property(nonatomic,readonly) NSNumber* stopped;
+@property(nonatomic,readonly) NSNumber* paused;
 @property(nonatomic,readwrite,retain) NSNumber *compression;
 @property(nonatomic,readwrite,retain) NSNumber *format;
 

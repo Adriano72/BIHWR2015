@@ -64,7 +64,7 @@ module.exports = [ {
     }
 }, {
     isId: true,
-    priority: 100000.0011,
+    priority: 100000.0002,
     key: "ripple",
     style: {
         backgroundColor: "rgba(255,255,255,0.40)",

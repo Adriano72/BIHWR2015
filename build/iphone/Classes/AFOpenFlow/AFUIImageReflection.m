@@ -27,7 +27,7 @@
 #import "AFUIImageReflection.h"
 
 
-// JMS2015 modification note: 
+// BIHWR2015 modification note: 
 // using categories with static libraries don't seem to work
 // right on device with iphone - probably a symbol issue
 // turn this into a static function (from what was a category to UIImage
@@ -47,7 +47,7 @@ UIImage* AddImageReflection(UIImage *image, CGFloat reflectionFraction)
     
     // create the bitmap context
     CGContextRef gradientBitmapContext = CGBitmapContextCreate(nil, 1, reflectionHeight,
-                                                               8, 0, colorSpace, kCGImageAlphaNone);
+                                                               8, 0, colorSpace, kCGBitmapAlphaInfoMask & kCGImageAlphaNone);
     
     // define the start and end grayscale values (with the alpha, even though
     // our bitmap context doesn't support alpha the gradient requires it)
