@@ -209,7 +209,7 @@ function prettyDate(time) {
 }
 
 // set up a twitter screen name.
-var screen_name = '%23JMS2015';
+var screen_name = '%23bereislandretreat2015';
 
 function loadData() {
 	// create table view data object
@@ -233,14 +233,14 @@ function loadData() {
 			//Ti.API.info("TWEET: " + JSON.stringify(tweets[0]));
 
 			_.each(tweets.statuses, function(value) {
-				//Ti.API.info("DATA: " + value.img);
+				Ti.API.info("DATA: " + value.user.entities.url.urls[0].expanded_url);
 				var riga = Alloy.createController('tweetRow', {
 
 					tweet : value.text,
-					user : value.user.screen_name,
+					user : value.user.name,
 					avatar : value.user.profile_image_url,
 					created_at : prettyDate(strtotime(value.created_at)),
-					first_url : value.entities.urls[0].expanded_url
+					first_url : value.user.entities.url.urls[0].expanded_url
 
 				}).getView();
 				rows.push(riga);

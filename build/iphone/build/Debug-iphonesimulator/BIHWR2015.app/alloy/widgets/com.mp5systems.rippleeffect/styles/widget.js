@@ -1,1 +1,1 @@
-/Users/adrianomassi/Documents/Titanium_Studio_Workspace/BIHWR2015/Resources/iphone/alloy/widgets/com.mp5systems.rippleeffect/styles/widget.js
+/Users/adrianomassi/Labs/BIHWR2015/Resources/iphone/alloy/widgets/com.mp5systems.rippleeffect/styles/widget.js

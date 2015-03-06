@@ -165,12 +165,13 @@ function Controller() {
             try {
                 var tweets = JSON.parse(this.responseText);
                 _.each(tweets.statuses, function(value) {
+                    Ti.API.info("DATA: " + value.user.entities.url.urls[0].expanded_url);
                     var riga = Alloy.createController("tweetRow", {
                         tweet: value.text,
-                        user: value.user.screen_name,
+                        user: value.user.name,
                         avatar: value.user.profile_image_url,
                         created_at: prettyDate(strtotime(value.created_at)),
-                        first_url: value.entities.urls[0].expanded_url
+                        first_url: value.user.entities.url.urls[0].expanded_url
                     }).getView();
                     rows.push(riga);
                 });
@@ -251,7 +252,7 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
-    var screen_name = "%23JMS2015";
+    var screen_name = "%23bereislandretreat2015";
     __defers["$.__views.tweetsWindow!open!doOpen"] && $.__views.tweetsWindow.addEventListener("open", doOpen);
     __defers["$.__views.refresh!refreshstart!reloadData"] && $.__views.refresh.addEventListener("refreshstart", reloadData);
     _.extend($, exports);

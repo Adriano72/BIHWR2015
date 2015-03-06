@@ -1,1 +1,1 @@
-/Users/adrianomassi/Documents/Titanium_Studio_Workspace/BIHWR2015/Resources/alloy/animation.js
+/Users/adrianomassi/Labs/BIHWR2015/Resources/alloy/animation.js

@@ -1,1 +1,1 @@
-/Users/adrianomassi/Documents/Titanium_Studio_Workspace/BIHWR2015/Resources/iphone/alloy/controllers/timeTableRow.js
+/Users/adrianomassi/Labs/BIHWR2015/Resources/iphone/alloy/controllers/timeTableRow.js
