@@ -1,1 +1,1 @@
-/Users/adrianomassi/Labs/BIHWR2015/Resources/iphone/alloy/controllers/tweets.js
+/Users/adrianomassi/Documents/Titanium_Studio_Workspace/BIHWR2015/Resources/iphone/alloy/controllers/tweets.js

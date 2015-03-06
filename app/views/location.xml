@@ -9,7 +9,7 @@
 
 			</Menu>
 			<TitleControl platform="ios">
-				<Label class="titolo">The John Main Seminar 2015</Label>
+				<Label class="titolo">Bere Island Easter Retreat 2015</Label>
 			</TitleControl>
 			<LeftNavButton platform="ios">
 				<ImageView class="leftNavImg"/>
@@ -20,7 +20,7 @@
 			<Module id="mapview" module="ti.map" onComplete="selectAnnot" method="createView">
 				<!-- Starting with Alloy 1.4.0, use the Annotation tag to define an annotation -->
 				<!-- Prior to Alloy 1.4.0, create annotations in the controller -->
-				<Annotation id='seminarPlace' title="University of Waikato"/>
+				<Annotation id='seminarPlace' title="Heritage Centre, Bere Island"/>
 			</Module>
 		</Window>
 	</Tab>

@@ -51,12 +51,6 @@ function Controller() {
     __alloyId6.push($.__views.scheduleController.getViewEx({
         recurse: true
     }));
-    $.__views.speakersController = Alloy.createController("speakers", {
-        id: "speakersController"
-    });
-    __alloyId6.push($.__views.speakersController.getViewEx({
-        recurse: true
-    }));
     $.__views.infoController = Alloy.createController("info", {
         id: "infoController"
     });

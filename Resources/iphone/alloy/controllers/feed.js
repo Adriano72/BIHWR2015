@@ -29,7 +29,7 @@ function Controller() {
     var exports = {};
     var __defers = {};
     $.__views.feedWindow = Ti.UI.createWindow({
-        barColor: "#1cc73f",
+        barColor: "#B00909",
         top: Alloy.Globals.winTopHeight,
         statusBarStyle: Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
         orientationModes: [ Ti.UI.PORTRAIT ],
@@ -44,13 +44,13 @@ function Controller() {
         },
         height: "100%",
         width: Ti.UI.SIZE,
-        color: "#204000",
-        text: "The John Main Seminar 2015",
+        color: "#FFF",
+        text: "Bere Island Easter Retreat 2015",
         id: "__alloyId1"
     });
     $.__views.feedWindow.titleControl = $.__views.__alloyId1;
     $.__views.__alloyId3 = Ti.UI.createImageView({
-        image: "/images/doves_black_transparentbg_web.png",
+        image: "/images/doves_title.png",
         height: 30,
         id: "__alloyId3"
     });

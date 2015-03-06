@@ -10,12 +10,12 @@ function __processArg(obj, key) {
 function Controller() {
     function doOpen() {}
     function selectAnnot() {
-        $.mapview.selectAnnotation("University of Waikato", true);
+        $.mapview.selectAnnotation("Heritage Centre, Bere Island", true);
     }
     function openNavigation() {
         require("locationServices").getUserLocation(function(userLoc) {
             var mapsServiceURL = "http://maps.apple.com/maps?t=m&saddr=";
-            Ti.Platform.openURL(mapsServiceURL + userLoc.latitude + "," + userLoc.longitude + "&daddr=-37.788202,175.311180");
+            Ti.Platform.openURL(mapsServiceURL + userLoc.latitude + "," + userLoc.longitude + "&daddr=51.635157,-9.880155");
         });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
@@ -35,7 +35,7 @@ function Controller() {
     var exports = {};
     var __defers = {};
     $.__views.locationWindow = Ti.UI.createWindow({
-        barColor: "#1cc73f",
+        barColor: "#B00909",
         top: Alloy.Globals.winTopHeight,
         statusBarStyle: Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
         orientationModes: [ Ti.UI.PORTRAIT ],
@@ -50,13 +50,13 @@ function Controller() {
         },
         height: "100%",
         width: Ti.UI.SIZE,
-        color: "#204000",
-        text: "The John Main Seminar 2015",
+        color: "#FFF",
+        text: "Bere Island Easter Retreat 2015",
         id: "__alloyId13"
     });
     $.__views.locationWindow.titleControl = $.__views.__alloyId13;
     $.__views.__alloyId15 = Ti.UI.createImageView({
-        image: "/images/doves_black_transparentbg_web.png",
+        image: "/images/doves_title.png",
         height: 30,
         id: "__alloyId15"
     });
@@ -70,20 +70,20 @@ function Controller() {
     $.__views.locationWindow.rightNavButton = $.__views.__alloyId17;
     var __alloyId18 = [];
     $.__views.seminarPlace = require("ti.map").createAnnotation({
-        latitude: -37.788202,
-        longitude: 175.31118,
-        subtitle: "Gate 1, 106/110 Knighton Rd",
+        latitude: 51.635157,
+        longitude: -9.880155,
+        subtitle: "Ballinakilla County Cork, CO",
         pincolor: Alloy.Globals.Map.ANNOTATION_GREEN,
         id: "seminarPlace",
-        title: "University of Waikato"
+        title: "Heritage Centre, Bere Island"
     });
     __alloyId18.push($.__views.seminarPlace);
     $.__views.mapview = require("ti.map").createView({
         region: {
-            latitude: -37.788202,
-            longitude: 175.31118,
-            latitudeDelta: .01,
-            longitudeDelta: .01
+            latitude: 51.635157,
+            longitude: -9.880155,
+            latitudeDelta: .05,
+            longitudeDelta: .05
         },
         annotations: __alloyId18,
         id: "mapview"

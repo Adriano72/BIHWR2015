@@ -2,7 +2,7 @@
 	<Tab id="tweetsTab" title=" Twitter ">
 		<Window id="tweetsWindow" class="topBar" title="Tweets" onOpen="doOpen">
 			<TitleControl platform="ios">
-				<Label class="titolo">The John Main Seminar 2015</Label>
+				<Label class="titolo">Bere Island Easter Retreat 2015</Label>
 			</TitleControl>
 			<LeftNavButton platform="ios">
 				<ImageView class="leftNavImg"/>

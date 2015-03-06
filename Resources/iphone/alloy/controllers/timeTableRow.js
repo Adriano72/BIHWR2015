@@ -30,23 +30,23 @@ function Controller() {
         id: "riga"
     });
     $.__views.riga && $.addTopLevelView($.__views.riga);
-    $.__views.__alloyId29 = Ti.UI.createView({
+    $.__views.__alloyId27 = Ti.UI.createView({
         top: 5,
         layout: "horizontal",
         width: "90%",
         height: 80,
-        id: "__alloyId29"
+        id: "__alloyId27"
     });
-    $.__views.riga.add($.__views.__alloyId29);
-    $.__views.__alloyId30 = Ti.UI.createView({
+    $.__views.riga.add($.__views.__alloyId27);
+    $.__views.__alloyId28 = Ti.UI.createView({
         backgroundColor: "#C98644",
         layout: "vertical",
         height: 80,
         width: 80,
         left: 0,
-        id: "__alloyId30"
+        id: "__alloyId28"
     });
-    $.__views.__alloyId29.add($.__views.__alloyId30);
+    $.__views.__alloyId27.add($.__views.__alloyId28);
     $.__views.day = Ti.UI.createLabel({
         font: {
             fontFamily: "ExpoSansPro-Regular",
@@ -58,7 +58,7 @@ function Controller() {
         color: "#FFF",
         id: "day"
     });
-    $.__views.__alloyId30.add($.__views.day);
+    $.__views.__alloyId28.add($.__views.day);
     $.__views.date = Ti.UI.createLabel({
         font: {
             fontFamily: "ExpoSansPro-Regular",
@@ -70,7 +70,7 @@ function Controller() {
         color: "#FFF",
         id: "date"
     });
-    $.__views.__alloyId30.add($.__views.date);
+    $.__views.__alloyId28.add($.__views.date);
     $.__views.time = Ti.UI.createLabel({
         font: {
             fontFamily: "ExpoSansPro-Regular",
@@ -82,14 +82,14 @@ function Controller() {
         color: "#FFF",
         id: "time"
     });
-    $.__views.__alloyId30.add($.__views.time);
-    $.__views.__alloyId31 = Ti.UI.createView({
+    $.__views.__alloyId28.add($.__views.time);
+    $.__views.__alloyId29 = Ti.UI.createView({
         height: 80,
         width: "70%",
         left: 5,
-        id: "__alloyId31"
+        id: "__alloyId29"
     });
-    $.__views.__alloyId29.add($.__views.__alloyId31);
+    $.__views.__alloyId27.add($.__views.__alloyId29);
     $.__views.desc = Ti.UI.createLabel({
         font: {
             fontFamily: "ExpoSansPro-Regular",
@@ -101,7 +101,7 @@ function Controller() {
         color: "#FFF",
         id: "desc"
     });
-    $.__views.__alloyId31.add($.__views.desc);
+    $.__views.__alloyId29.add($.__views.desc);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};

@@ -18,7 +18,7 @@ module.exports = [ {
     priority: 10000.0002,
     key: "leftNavImg",
     style: {
-        image: "/images/doves_black_transparentbg_web.png",
+        image: "/images/doves_title.png",
         height: 30
     }
 }, {
@@ -32,14 +32,14 @@ module.exports = [ {
             fontFamily: "ExpoSansPro-Regular",
             fontSize: "16dp"
         },
-        color: "#204000"
+        color: "#FFF"
     }
 }, {
     isClass: true,
     priority: 10101.0001,
     key: "topBar",
     style: {
-        barColor: "#1cc73f",
+        barColor: "#B00909",
         top: Alloy.Globals.winTopHeight,
         statusBarStyle: Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
         orientationModes: [ Ti.UI.PORTRAIT ]
@@ -64,7 +64,7 @@ module.exports = [ {
     }
 }, {
     isId: true,
-    priority: 100000.0002,
+    priority: 100000.0011,
     key: "ripple",
     style: {
         backgroundColor: "rgba(255,255,255,0.40)",

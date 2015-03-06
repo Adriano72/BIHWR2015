@@ -7,7 +7,7 @@
 }
 
 "#scheduleTable": {
-	bottom: 51,
+	//bottom: 51,
 	separatorColor: "transparent"
 }
 

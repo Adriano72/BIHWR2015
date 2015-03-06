@@ -1,18 +1,18 @@
 
 "#mapview": {
 	region: {
-		latitude: -37.788202,
-		longitude: 175.311180,
-		latitudeDelta: 0.01,
-		longitudeDelta: 0.01
+		latitude: 51.635157,
+		longitude: -9.880155,
+		latitudeDelta: 0.05,
+		longitudeDelta: 0.05
 	}
 },
 
 "#seminarPlace": {
-	latitude: -37.788202,
-	longitude: 175.311180,
+	latitude: 51.635157,
+	longitude: -9.880155,
 	//title: "University of Waikato",
-	subtitle: "Gate 1, 106/110 Knighton Rd",
+	subtitle: "Ballinakilla County Cork, CO",
 	pincolor: Alloy.Globals.Map.ANNOTATION_GREEN
 }
 

@@ -26,7 +26,7 @@ function Controller() {
     var exports = {};
     var __defers = {};
     $.__views.speakersWindow = Ti.UI.createWindow({
-        barColor: "#1cc73f",
+        barColor: "#B00909",
         top: Alloy.Globals.winTopHeight,
         statusBarStyle: Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
         orientationModes: [ Ti.UI.PORTRAIT ],
@@ -35,24 +35,24 @@ function Controller() {
         title: "The John Main Seminar 2015"
     });
     doOpen ? $.__views.speakersWindow.addEventListener("open", doOpen) : __defers["$.__views.speakersWindow!open!doOpen"] = true;
-    $.__views.__alloyId26 = Ti.UI.createLabel({
+    $.__views.__alloyId24 = Ti.UI.createLabel({
         font: {
             fontFamily: "ExpoSansPro-Regular",
             fontSize: "16dp"
         },
         height: "100%",
         width: Ti.UI.SIZE,
-        color: "#204000",
-        text: "The John Main Seminar 2015",
+        color: "#FFF",
+        text: "Bere Island Easter Retreat 2015",
+        id: "__alloyId24"
+    });
+    $.__views.speakersWindow.titleControl = $.__views.__alloyId24;
+    $.__views.__alloyId26 = Ti.UI.createImageView({
+        image: "/images/doves_title.png",
+        height: 30,
         id: "__alloyId26"
     });
-    $.__views.speakersWindow.titleControl = $.__views.__alloyId26;
-    $.__views.__alloyId28 = Ti.UI.createImageView({
-        image: "/images/doves_black_transparentbg_web.png",
-        height: 30,
-        id: "__alloyId28"
-    });
-    $.__views.speakersWindow.leftNavButton = $.__views.__alloyId28;
+    $.__views.speakersWindow.leftNavButton = $.__views.__alloyId26;
     $.__views.speakersTable = Ti.UI.createTableView({
         top: 10,
         height: Ti.UI.SIZE,

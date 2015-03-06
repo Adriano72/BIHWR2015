@@ -5,7 +5,7 @@ $.feedWebView.url = "http://wccm.org/bi2015/feed.html";
 function doOpen(evt) {
 
 	if (OS_ANDROID) {
-		abx.title = "Bere Island  2015";
+		abx.title = "Bere Island Easter Retreat 2015";
 		abx.titleFont = "Expo Sans Pro Regular.otf";
 		abx.titleColor = "#204000";
 

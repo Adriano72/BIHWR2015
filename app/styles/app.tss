@@ -1,12 +1,12 @@
 ".topBar[platform=ios]": {
-	barColor: "#1cc73f",
+	barColor: "#B00909",
 	top: Alloy.Globals.winTopHeight,
 	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
 	orientationModes: [Ti.UI.PORTRAIT]
 }
 
 ".leftNavImg": {
-	image: "/images/doves_black_transparentbg_web.png",
+	image: "/images/doves_title.png",
 	height: 30
 }
 
@@ -53,6 +53,6 @@
         fontFamily:'ExpoSansPro-Regular',
         fontSize: '16dp'
    },
-   color: "#204000"
+   color: "#FFF"
 }
 

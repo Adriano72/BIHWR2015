@@ -6,7 +6,7 @@
 		<Require id="tweetsController" src="tweets"/>
 		<Require id="locationController" src="location"/>
 		<Require id="scheduleController" src="schedule"/>
-		<Require id="speakersController" src="speakers"/>		
+		<!--<Require id="speakersController" src="speakers"/>-->		
 		<Require id="infoController" src="info"/>
 	</TabGroup>
 </Alloy>

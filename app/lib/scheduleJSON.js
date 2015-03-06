@@ -1,478 +1,148 @@
-exports.preRetreatSchedule = [{
-	day : "MON",
-	date : "12 JAN",
-	time : "13:00",
-	desc : "Arrival and Registration - Gate 4 Hillcrest Road"
+exports.retreatSchedule = [{
+	day : "SUN",
+	date : "29 MAR",
+	time : "10:00",
+	desc : "Palm Sunday Mass"
 }, {
-	day : "MON",
-	date : "12 JAN",
+	day : "SUN",
+	date : "29 MAR",
 	time : "15:00",
-	desc : "Afternoon tea"
+	desc : "Retreat opens. Welcome by Fr Laurence, Orientation, Meditation"
 }, {
 	day : "MON",
-	date : "12 JAN",
-	time : "16:00",
-	desc : "Introduction to Meditation (optional) Lecture room 1 L Block"
+	date : "30 MAR",
+	time : "9:30",
+	desc : "Yoga"
 }, {
 	day : "MON",
-	date : "12 JAN",
+	date : "30 MAR",
+	time : "10:30 - 12:30",
+	desc : "Talk, Meditation, Discussion"
+}, {
+	day : "MON",
+	date : "30 MAR",
+	time : "18:00 - 19:30",
+	desc : "Talk and Meditation"
+}, {
+	day : "TUE",
+	date : "31 MAR",
+	time : "9:30",
+	desc : "Yoga"
+}, {
+	day : "TUE",
+	date : "31 MAR",
+	time : "10:30 - 12:30",
+	desc : "Talk, Meditation, Discussion"
+}, {
+	day : "TUE",
+	date : "31 MAR",
+	time : "18:00 - 19:30",
+	desc : "Talk and Meditation"
+}, {
+
+	day : "WED",
+	date : "1 APR",
+	time : "9:30",
+	desc : "Yoga"
+}, {
+	day : "WED",
+	date : "1 APR",
+	time : "10:30 - 12:00",
+	desc : "Talk, Meditation, Discussion"
+}, {
+	day : "WED",
+	date : "1 APR",
+	time : "18:00 - 18.30",
+	desc : "Talk"
+}, {
+	day : "WED",
+	date : "1 APR",
+	time : "18:30 - 19:00",
+	desc : "Meditation"
+}, {
+	day : "HOLY THU",
+	date : "2 APR",
+	time : "9:30",
+	desc : "Yoga"
+}, {
+	day : "HOLY THU",
+	date : "2 APR",
+	time : "10:30 - 12.30",
+	desc : "Talk, Meditation, Discussion"
+}, {
+	day : "HOLY THU",
+	date : "2 APR",
+	time : "16:30 - 17:00",
+	desc : "Introduction to the Liturgy"
+}, {
+	day : "HOLY THU",
+	date : "2 APR",
+	time : "17:00 - 17:30",
+	desc : "Meditation"
+}, {
+	day : "HOLY THU",
+	date : "2 APR",
+	time : "19:00",
+	desc : "Mass of the Lord’s Supper (Church)"
+}, {
+	day : "GOOD FRI",
+	date : "3 APR",
+	time : "9:30",
+	desc : "Stations of the Cross (Church)"
+},{
+	day : "GOOD FRI",
+	date : "3 APR",
+	time : "10:30 - 12:00",
+	desc : "Talk and Meditation"
+}, {
+	day : "GOOD FRI",
+	date : "3 APR",
+	time : "15:00",
+	desc : "Good Friday Liturgy (Church)"
+}, {
+	day : "GOOD FRI",
+	date : "3 APR",
 	time : "17:00",
-	desc : "Meditation Lecture room 1 L Block"
+	desc : "Silent Walk (optional)"
 }, {
-	day : "MON",
-	date : "12 JAN",
-	time : "18:00",
-	desc : "Dinner College Hall"
+	day : "GOOD FRI",
+	date : "3 APR",
+	time : "18:00 - 18:30",
+	desc : "Meditation"
 }, {
-	day : "MON",
-	date : "12 JAN",
-	time : "19:15",
-	desc : "Welcome from Vincent Marie NZCCM National Coordinator, housekeeping and team introductions."
-}, {
-	day : "MON",
-	date : "12 JAN",
-	time : "19:30",
-	desc : "Opening Session – Fr. Laurence Freeman followed by night prayer and meditation"
-}, {
-	day : "TUE",
-	date : "13 JAN",
-	time : "6:30",
-	desc : "Meditation (optional)"
-}, {
-	day : "TUE",
-	date : "13 JAN",
-	time : "7:00",
-	desc : "Contemplative walk around lake"
-}, {
-	day : "TUE",
-	date : "13 JAN",
-	time : "7:30",
-	desc : "Morning prayer and meditation"
-}, {
-	day : "TUE",
-	date : "13 JAN",
-	time : "8:15",
-	desc : "Breakfast"
-}, {
-	day : "TUE",
-	date : "13 JAN",
+	day : "HOLY SAT",
+	date : "4 APR",
 	time : "9:30",
-	desc : "Conference 1 – Fr. Laurence Freeman"
+	desc : "Yoga"
 }, {
-	day : "TUE",
-	date : "13 JAN",
-	time : "10:30",
-	desc : "Morning tea (outside lecture theatre)"
+	day : "HOLY SAT",
+	date : "4 APR",
+	time : "10:30 - 12:30",
+	desc : "Talk, Meditation, Discussion"
 }, {
-	day : "TUE",
-	date : "13 JAN",
-	time : "11:00",
-	desc : "Body work or Labyrinth Walk"
+	day : "HOLY SAT",
+	date : "4 APR",
+	time : "18:00 - 19:00",
+	desc : "Talk and Meditation"
 }, {
-	day : "TUE",
-	date : "13 JAN",
-	time : "12:15",
-	desc : "Middate  prayer and meditation"
+	day : "HOLY SAT",
+	date : "4 APR",
+	time : "21:00",
+	desc : "Easter Vigil (Church)"
 }, {
-	day : "TUE",
-	date : "13 JAN",
-	time : "13:00",
-	desc : "Lunch"
+	day : "EASTER SUN",
+	date : "5 APR ",
+	time : "6:00",
+	desc : "Easter Sunrise (Standing Stone)"
 }, {
-	day : "TUE",
-	date : "13 JAN",
-	time : "14:00",
-	desc : "Free time, bookshop open"
-}, {
-	day : "TUE",
-	date : "13 JAN",
-	time : "15:00",
-	desc : "Conference 2 – Fr. Laurence Freeman"
-}, {
-	day : "TUE",
-	date : "13 JAN",
-	time : "16:00",
-	desc : "Break, bookshop open"
-}, {
-	day : "TUE",
-	date : "13 JAN",
-	time : "16:30",
-	desc : "Eucharist and meditation"
-}, {
-	day : "TUE",
-	date : "13 JAN",
-	time : "18:00",
-	desc : "Dinner"
-}, {
-	day : "TUE",
-	date : "13 JAN",
-	time : "19:15",
-	desc : "Free time, bookshop open"
-}, {
-	day : "TUE",
-	date : "13 JAN",
-	time : "20:00",
-	desc : "Night prayer and meditation"
-}, {
-	day : "WED",
-	date : "14 JAN ",
-	time : "6:30",
-	desc : "Meditation (optional)"
-}, {
-	day : "WED",
-	date : "14 JAN ",
-	time : "7:00",
-	desc : "Contemplative walk by lake"
-}, {
-	day : "WED",
-	date : "14 JAN ",
-	time : "7:30",
-	desc : "Morning prayer and meditation"
-}, {
-	day : "WED",
-	date : "14 JAN ",
-	time : "8:15",
-	desc : "Breakfast"
-}, {
-	day : "WED",
-	date : "14 JAN ",
-	time : "9:30",
-	desc : "Conference 3 – Fr. Laurence Freeman"
-}, {
-	day : "WED",
-	date : "14 JAN ",
-	time : "10:30",
-	desc : "Morning tea (outside lecture theatre)"
-}, {
-	day : "WED",
-	date : "14 JAN ",
-	time : "11:00",
-	desc : "Body work or Labyrinth walk"
-}, {
-	day : "WED",
-	date : "14 JAN ",
-	time : "12:15",
-	desc : "Midday prayer and meditation"
-}, {
-	day : "WED",
-	date : "14 JAN ",
-	time : "13:00",
-	desc : "Lunch"
-}, {
-	day : "WED",
-	date : "14 JAN ",
-	time : "14:00",
-	desc : "Free time, bookshop open"
-}, {
-	day : "WED",
-	date : "14 JAN ",
-	time : "15:00",
-	desc : "Conference 4 – Fr. Laurence Freeman"
-}, {
-	day : "WED",
-	date : "14 JAN ",
-	time : "16:00",
-	desc : "Break, bookshop open"
-}, {
-	day : "WED",
-	date : "14 JAN ",
-	time : "16:30",
-	desc : "Eucharist and meditation"
-}, {
-	day : "WED",
-	date : "14 JAN ",
-	time : "18:00",
-	desc : "Dinner"
-}, {
-	day : "WED",
-	date : "14 JAN ",
-	time : "19:15",
-	desc : "Free time, bookshop open"
-}, {
-	day : "WED",
-	date : "14 JAN ",
-	time : "20:00",
-	desc : "Night prayer and meditation"
-}, {
-	day : "THU",
-	date : "15 JAN ",
-	time : "6:30",
-	desc : "Meditation (optional)"
-}, {
-	day : "THU",
-	date : "15 JAN ",
-	time : "7:15",
-	desc : "Morning prayer and meditation"
-}, {
-	day : "THU",
-	date : "15 JAN ",
+	day : "EASTER SUN",
+	date : "5 APR ",
 	time : "8:00",
-	desc : "Breakfast"
+	desc : "Meditation and Conclusion of Retreat"
 }, {
-	day : "THU",
-	date : "15 JAN ",
-	time : "9:15",
-	desc : "Q&A session - Fr. Laurence Freeman"
-}, {
-	day : "THU",
-	date : "15 JAN ",
-	time : "10:15",
-	desc : "Break"
-}, {
-	day : "THU",
-	date : "15 JAN ",
-	time : "10:45",
-	desc : "Eucharist and meditation"
-}, {
-	day : "THU",
-	date : "15 JAN ",
-	time : "12:15",
-	desc : "Lunch (except for tour participants)"
-}, {
-	day : "THU",
-	date : "15 JAN ",
-	time : "12:30",
-	desc : "Tour departs Gate 4, assemble at registration area"
+	day : "EASTER SUN",
+	date : "5 APR ",
+	time : "10:00",
+	desc : "Mass of Easter Day (Church)"
 }];
 
-exports.seminarSchedule = [{
-	day : "THU",
-	date : "15 JAN ",
-	time : "13:30",
-	desc : "Registration Gate 4 Hillcrest Road"
-},{
-	day : "THU",
-	date : "15 JAN ",
-	time : "16:00",
-	desc : "The Pilgrimage DVD and introduction to Christian meditation - Lecture room 1 L Block"
-},{
-	day : "THU",
-	date : "15 JAN ",
-	time : "17:00",
-	desc : "Meditation - Lecture room 1 L Block"
-},{
-	day : "THU",
-	date : "15 JAN ",
-	time : "17:45",
-	desc : "Dinner - College Hall"
-},{
-	day : "THU",
-	date : "15 JAN ",
-	time : "19:00",
-	desc : "Powhiri Opening and Welcome Most Rev Bishop Denis Browne, Bishop of Hamilton\nPat Por, Vice-chair of the WCCM Guiding Board\nIntroduction -- Laurence Freeman OSB"
-},{
-	day : "THU",
-	date : "15 JAN ",
-	time : "20:00",
-	desc : "Opening Session – Prof. David Tacey Night Prayer and meditation."
-},{
-	day : "FRI",
-	date : "16 JAN ",
-	time : "6:30",
-	desc : "Meditation (optional)"
-},{
-	day : "FRI",
-	date : "16 JAN ",
-	time : "7:00",
-	desc : "Contemplative walk – around lake"
-},{
-	day : "FRI",
-	date : "16 JAN ",
-	time : "7:30",
-	desc : "Morning prayer and meditation"
-},{
-	day : "FRI",
-	date : "16 JAN ",
-	time : "8:15",
-	desc : "Breakfast"
-},{
-	day : "FRI",
-	date : "16 JAN ",
-	time : "9:30",
-	desc : "Session Two – Prof. David Tacey"
-},{
-	day : "FRI",
-	date : "16 JAN ",
-	time : "10:30",
-	desc : "Morning tea"
-},{
-	day : "FRI",
-	date : "16 JAN ",
-	time : "11:00",
-	desc : "Free time / Bookshop open\nMeditation with Children workshop"
-},{
-	day : "FRI",
-	date : "16 JAN ",
-	time : "12:15",
-	desc : "Midday prayer and meditation"
-},{
-	day : "FRI",
-	date : "16 JAN ",
-	time : "13:00",
-	desc : "Lunch"
-},{
-	day : "FRI",
-	date : "16 JAN ",
-	time : "14:00",
-	desc : "Free time- Walking the labyrinth / body work\nBookshop open"
-},{
-	day : "FRI",
-	date : "16 JAN ",
-	time : "14:30",
-	desc : "Session Three – Prof. David Tacey"
-},{
-	day : "FRI",
-	date : "16 JAN ",
-	time : "15:30",
-	desc : "Afternoon tea"
-},{
-	day : "FRI",
-	date : "16 JAN ",
-	time : "15:50",
-	desc : "Discussion groups"
-},{
-	day : "FRI",
-	date : "16 JAN ",
-	time : "17:00",
-	desc : "Evening prayer and meditation"
-},{
-	day : "FRI",
-	date : "16 JAN ",
-	time : "18:00",
-	desc : "Dinner"
-},{
-	day : "FRI",
-	date : "16 JAN ",
-	time : "19:30",
-	desc : "Getting to know The World Community for Christian Meditation – with Fr. Laurence Freeman and others"
-},{
-	day : "FRI",
-	date : "16 JAN ",
-	time : "21:00",
-	desc : "Night prayer and meditation"
-},{
-	day : "SAT",
-	date : "17 JAN ",
-	time : "6:30",
-	desc : "Meditation (optional)"
-},{
-	day : "SAT",
-	date : "17 JAN ",
-	time : "7:00",
-	desc : "Contemplative Walk"
-},{
-	day : "SAT",
-	date : "17 JAN ",
-	time : "7:30",
-	desc : "Morning prayer and Meditation"
-},{
-	day : "SAT",
-	date : "17 JAN ",
-	time : "8:15",
-	desc : "Breakfast"
-},{
-	day : "SAT",
-	date : "17 JAN ",
-	time : "9:30",
-	desc : "Session Four – Prof. David Tacey"
-},{
-	day : "SAT",
-	date : "17 JAN ",
-	time : "10:30",
-	desc : "Morning tea"
-},{
-	day : "SAT",
-	date : "17 JAN ",
-	time : "11:00",
-	desc : "Discussion groups"
-},{
-	day : "SAT",
-	date : "17 JAN ",
-	time : "12:15",
-	desc : "Midday prayer and meditation"
-},{
-	day : "SAT",
-	date : "17 JAN ",
-	time : "13:00",
-	desc : "Lunch"
-},{
-	day : "SAT",
-	date : "17 JAN ",
-	time : "14:00",
-	desc : "Free time - Walking the labyrinth\nBookshop open"
-},{
-	day : "SAT",
-	date : "17 JAN ",
-	time : "14:30",
-	desc : "Session Five – Prof. David Tacey"
-},{
-	day : "SAT",
-	date : "17 JAN ",
-	time : "15:30",
-	desc : "Afternoon Tea"
-},{
-	day : "SAT",
-	date : "17 JAN ",
-	time : "16:00",
-	desc : "Preparation for 'WCCM\'s Got Talent'"
-},{
-	day : "SAT",
-	date : "17 JAN ",
-	time : "17:00",
-	desc : "Evening prayer and meditation"
-},{
-	day : "SAT",
-	date : "17 JAN ",
-	time : "18:30",
-	desc : "Reception"
-},{
-	day : "SAT",
-	date : "17 JAN ",
-	time : "19:00",
-	desc : "Dinner"
-},{
-	day : "SAT",
-	date : "17 JAN ",
-	time : "20:30",
-	desc : "Entertainment"
-},{
-	day : "SUN",
-	date : "18 JAN ",
-	time : "6:30",
-	desc : "Meditation (optional)"
-},{
-	day : "SUN",
-	date : "18 JAN ",
-	time : "7:00",
-	desc : "Contemplative walk"
-},{
-	day : "SUN",
-	date : "18 JAN ",
-	time : "7:30",
-	desc : "Morning prayer and meditation"
-},{
-	day : "SUN",
-	date : "18 JAN ",
-	time : "8:15",
-	desc : "Breakfast"
-},{
-	day : "SUN",
-	date : "18 JAN ",
-	time : "9:15",
-	desc : "Dialogue with Prof. David Tacey and Fr. Laurence Freeman"
-},{
-	day : "SUN",
-	date : "18 JAN ",
-	time : "10:30",
-	desc : "Morning Tea"
-},{
-	day : "SUN",
-	date : "18 JAN ",
-	time : "11:00",
-	desc : "Contemplative Eucharist"
-},{
-	day : "SUN",
-	date : "18 JAN ",
-	time : "12:00",
-	desc : "Lunch"
-}];
