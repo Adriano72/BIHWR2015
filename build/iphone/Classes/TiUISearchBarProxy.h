@@ -27,7 +27,7 @@
 //	but is internal ONLY, and should NOT be used by javascript.
 @property(nonatomic,readwrite,assign) BOOL showsCancelButton;
 
-#pragma mark - BIHWR2015 Internal Use
+#pragma mark - BIRetreat2015 Internal Use
 -(void)ensureSearchBarHeirarchy;
 @end
 

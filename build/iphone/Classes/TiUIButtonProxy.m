@@ -68,10 +68,10 @@
 {
 	switch((int)styleCache)
 	{
-		case UIBIHWR2015NativeItemInfoLight:
-		case UIBIHWR2015NativeItemInfoDark:
+		case UIBIRetreat2015NativeItemInfoLight:
+		case UIBIRetreat2015NativeItemInfoDark:
 			return 18;
-		case UIBIHWR2015NativeItemDisclosure:
+		case UIBIRetreat2015NativeItemDisclosure:
 			return 29;
 		default: {
 			break;
@@ -84,10 +84,10 @@
 {
 	switch((int)styleCache)
 	{
-		case UIBIHWR2015NativeItemInfoLight:
-		case UIBIHWR2015NativeItemInfoDark:
+		case UIBIRetreat2015NativeItemInfoLight:
+		case UIBIRetreat2015NativeItemInfoDark:
 			return 19;
-		case UIBIHWR2015NativeItemDisclosure:
+		case UIBIRetreat2015NativeItemDisclosure:
 			return 31;
 		default: {
 			break;
@@ -101,9 +101,9 @@
 {
 	switch ((int)styleCache)
 	{
-		case UIBIHWR2015NativeItemInfoLight:
-		case UIBIHWR2015NativeItemInfoDark:
-		case UIBIHWR2015NativeItemDisclosure:
+		case UIBIRetreat2015NativeItemInfoLight:
+		case UIBIRetreat2015NativeItemInfoDark:
+		case UIBIRetreat2015NativeItemDisclosure:
 			return suggestedResizing & ~(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
 		default: {
 			break;

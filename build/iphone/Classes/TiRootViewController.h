@@ -54,7 +54,7 @@
     NSInteger activeAlertControllerCount;
 }
 
-//BIHWR2015 Support
+//BIRetreat2015 Support
 -(CGRect)resizeView;
 -(void)repositionSubviews;
 -(UIView *)topWindowProxyView;

@@ -11,9 +11,11 @@
 				<View id="container">
 					<View id="borderSpacer">
 						<ImageView id="headerImage"/>
-						<Label id="titolo" class="expoSansProBold"/>
-						<Label id="body"/>
-						<Label id="linkToSite" class="expoSansProBold" onClick="goToSite"/>
+						<Label id="titolo" class="expoSansProBold header"/>
+						<Label id="generalInfo" class="body"/>
+						
+						<Label id="wccmlink" class="expoSansProBold link" onClick="goToSite"/>
+						
 					</View>
 				</View>
 			</ScrollView>

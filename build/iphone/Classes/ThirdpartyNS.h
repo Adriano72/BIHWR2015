@@ -7,8 +7,8 @@
  * WARNING: This is generated code. Modify at your own risk and without support.
  */
 
-#ifndef BIHWR2015_ThirdpartyNS_h
-#define BIHWR2015_ThirdpartyNS_h
+#ifndef BIRetreat2015_ThirdpartyNS_h
+#define BIRetreat2015_ThirdpartyNS_h
 
 #ifndef __TI_NAMESPACE_PREFIX_
 #define __TI_NAMESPACE_PREFIX_	TI

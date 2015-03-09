@@ -6,7 +6,7 @@ exports.retreatSchedule = [ {
 }, {
     day: "SUN",
     date: "29 MAR",
-    time: "15:00",
+    time: "17:30",
     desc: "Retreat opens. Welcome by Fr Laurence, Orientation, Meditation"
 }, {
     day: "MON",

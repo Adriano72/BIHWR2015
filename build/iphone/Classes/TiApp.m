@@ -178,7 +178,7 @@ TI_INLINE void waitForMemoryPanicCleared();   //WARNING: This must never be run 
 
 - (void)boot
 {
-	DebugLog(@"[INFO] %@/%@ (%s.0014f83)",TI_APPLICATION_NAME,TI_APPLICATION_VERSION,TI_VERSION_STR);
+	DebugLog(@"[INFO] %@/%@ (%s.96875c9)",TI_APPLICATION_NAME,TI_APPLICATION_VERSION,TI_VERSION_STR);
 	
 	sessionId = [[TiUtils createUUID] retain];
 	TITANIUM_VERSION = [[NSString stringWithCString:TI_VERSION_STR encoding:NSUTF8StringEncoding] retain];
@@ -187,28 +187,32 @@ TI_INLINE void waitForMemoryPanicCleared();   //WARNING: This must never be run 
         NSMutableDictionary *params = [[[NSMutableDictionary alloc] initWithContentsOfFile:filePath] autorelease];
         NSString *host = [params objectForKey:@"host"];
         NSInteger port = [[params objectForKey:@"port"] integerValue];
-        NSString *airkey = [params objectForKey:@"airkey"];
+
         if (([host length] > 0) && ![host isEqualToString:@"__DEBUGGER_HOST__"])
         {
             [self setDebugMode:YES];
             TiDebuggerStart(host, port);
         }
 #if !TARGET_IPHONE_SIMULATOR
-		else if (([airkey length] > 0) && ![airkey isEqualToString:@"__DEBUGGER_AIRKEY__"])
+		else
 		{
-			NSArray *hosts = nil;
-			NSString *hostsString = [params objectForKey:@"hosts"];
-			if (![hostsString isEqualToString:@"__DEBUGGER_HOSTS__"]) {
-				hosts = [hostsString componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@","]];
-			}
-			TiDebuggerDiscoveryStart(airkey, hosts, ^(NSString *host, NSInteger port) {
-				if (host != nil) {
-					[self setDebugMode:YES];
-					TiDebuggerStart(host, port);
+			NSString *airkey = [params objectForKey:@"airkey"];
+			if (([airkey length] > 0) && ![airkey isEqualToString:@"__DEBUGGER_AIRKEY__"])
+			{
+				NSArray *hosts = nil;
+				NSString *hostsString = [params objectForKey:@"hosts"];
+				if (![hostsString isEqualToString:@"__DEBUGGER_HOSTS__"]) {
+					hosts = [hostsString componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@","]];
 				}
-				[self appBoot];
-			});
-			return;
+				TiDebuggerDiscoveryStart(airkey, hosts, ^(NSString *host, NSInteger port) {
+					if (host != nil) {
+						[self setDebugMode:YES];
+						TiDebuggerStart(host, port);
+					}
+					[self appBoot];
+				});
+				return;
+			}
 		}
 #endif
     }
@@ -217,28 +221,32 @@ TI_INLINE void waitForMemoryPanicCleared();   //WARNING: This must never be run 
         NSMutableDictionary *params = [[[NSMutableDictionary alloc] initWithContentsOfFile:filePath] autorelease];
         NSString *host = [params objectForKey:@"host"];
         NSInteger port = [[params objectForKey:@"port"] integerValue];
-        NSString *airkey = [params objectForKey:@"airkey"];
+
         if (([host length] > 0) && ![host isEqualToString:@"__PROFILER_HOST__"])
         {
             [self setProfileMode:YES];
             TiProfilerStart(host, port);
         }
 #if !TARGET_IPHONE_SIMULATOR
-		else if (([airkey length] > 0) && ![airkey isEqualToString:@"__PROFILER_AIRKEY__"])
+		else
 		{
-			NSArray *hosts = nil;
-			NSString *hostsString = [params objectForKey:@"hosts"];
-			if (![hostsString isEqualToString:@"__PROFILER_HOSTS__"]) {
-				hosts = [hostsString componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@","]];
-			}
-			TiProfilerDiscoveryStart(airkey, hosts, ^(NSString *host, NSInteger port) {
-				if (host != nil) {
-					[self setProfileMode:YES];
-					TiProfilerStart(host, port);
+			NSString *airkey = [params objectForKey:@"airkey"];
+			if (([airkey length] > 0) && ![airkey isEqualToString:@"__PROFILER_AIRKEY__"])
+			{
+				NSArray *hosts = nil;
+				NSString *hostsString = [params objectForKey:@"hosts"];
+				if (![hostsString isEqualToString:@"__PROFILER_HOSTS__"]) {
+					hosts = [hostsString componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@","]];
 				}
-				[self appBoot];
-			});
-			return;
+				TiProfilerDiscoveryStart(airkey, hosts, ^(NSString *host, NSInteger port) {
+					if (host != nil) {
+						[self setProfileMode:YES];
+						TiProfilerStart(host, port);
+					}
+					[self appBoot];
+				});
+				return;
+			}
 		}
 #endif
     }
@@ -950,8 +958,8 @@ expectedTotalBytes:(int64_t)expectedTotalBytes {
 		UIDevice *currentDevice = [UIDevice currentDevice];
 		NSString *currentLocaleIdentifier = [[NSLocale currentLocale] localeIdentifier];
 		NSString *currentDeviceInfo = [NSString stringWithFormat:@"%@/%@; %@; %@;",[currentDevice model],[currentDevice systemVersion],[currentDevice systemName],currentLocaleIdentifier];
-		NSString *kBIHWR2015UserAgentPrefix = [NSString stringWithFormat:@"%s%s%s %s%s","Appc","eler","ator","Tita","nium"];
-		userAgent = [[NSString stringWithFormat:@"%@/%s (%@)",kBIHWR2015UserAgentPrefix,TI_VERSION_STR,currentDeviceInfo] retain];
+		NSString *kBIRetreat2015UserAgentPrefix = [NSString stringWithFormat:@"%s%s%s %s%s","Appc","eler","ator","Tita","nium"];
+		userAgent = [[NSString stringWithFormat:@"%@/%s (%@)",kBIRetreat2015UserAgentPrefix,TI_VERSION_STR,currentDeviceInfo] retain];
 	}
 	return userAgent;
 }
@@ -1102,7 +1110,7 @@ expectedTotalBytes:(int64_t)expectedTotalBytes {
             errorString = [error localizedDescription];
         } else {
             // If we have no data...
-            // This should never happen on a BIHWR2015 app using the node.js CLI
+            // This should never happen on a BIRetreat2015 app using the node.js CLI
             errorString = @"File not found";
         }
         if(errorString != nil) {

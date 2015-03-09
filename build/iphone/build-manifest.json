@@ -1,14 +1,15 @@
 {
-	"target": "simulator",
-	"deployType": "development",
+	"target": "dist-appstore",
+	"deployType": "production",
 	"iosSdkVersion": "8.1",
 	"deviceFamily": "universal",
-	"iosSdkPath": "/Users/adrianomassi/Library/Application Support/Titanium/mobilesdk/osx/3.5.0.GA/iphone",
+	"distributionName": "Adriano Massi (YNSC5VUX23)",
+	"iosSdkPath": "/Users/adrianomassi/Library/Application Support/Titanium/mobilesdk/osx/3.5.1.GA/iphone",
 	"tiCoreHash": "47658db9e85e6b4af144b3d6070d6de0",
 	"modulesHash": "4e16b93101e69e91e961bb5062a733e4",
 	"modulesNativeHash": "ece6c9f866c0509cda3589fa4afc98be",
-	"gitHash": "0014f83",
-	"name": "BIHWR2015",
+	"gitHash": "96875c9",
+	"name": "BI Retreat 2015",
 	"id": "it.adrianomassi.bihwr2015",
 	"analytics": true,
 	"publisher": "WCCM",
@@ -17,8 +18,8 @@
 	"description": "Bere Island Holy Week Retreat 2015",
 	"copyright": "2015 by WCCM",
 	"guid": "4aa75469-d60e-4e83-8bfd-6f3ea1a44729",
-	"skipJSMinification": true,
+	"skipJSMinification": false,
 	"forceCopy": false,
 	"forceCopyAll": false,
-	"encryptJS": false
+	"encryptJS": true
 }

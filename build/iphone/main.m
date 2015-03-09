@@ -7,11 +7,11 @@
 #define _QUOTEME(x) #x
 #define STRING(x) _QUOTEME(x)
 
-NSString * const TI_APPLICATION_DEPLOYTYPE = @"development";
+NSString * const TI_APPLICATION_DEPLOYTYPE = @"production";
 NSString * const TI_APPLICATION_ID = @"it.adrianomassi.bihwr2015";
 NSString * const TI_APPLICATION_PUBLISHER = @"WCCM";
 NSString * const TI_APPLICATION_URL = @"http://www.wccm.org";
-NSString * const TI_APPLICATION_NAME = @"BIHWR2015";
+NSString * const TI_APPLICATION_NAME = @"BI Retreat 2015";
 NSString * const TI_APPLICATION_VERSION = @"1.0";
 NSString * const TI_APPLICATION_DESCRIPTION = @"Bere Island Holy Week Retreat 2015";
 NSString * const TI_APPLICATION_COPYRIGHT = @"2015 by WCCM";

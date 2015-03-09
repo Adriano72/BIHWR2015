@@ -19,9 +19,9 @@
 
 #ifdef KROLL_COVERAGE
 # import "KrollCoverage.h"
-@interface BIHWR2015Object : KrollCoverageObject {
+@interface BIRetreat2015Object : KrollCoverageObject {
 #else
-@interface BIHWR2015Object : KrollObject {
+@interface BIRetreat2015Object : KrollObject {
 #endif
 @private
 	NSMutableDictionary *modules;
@@ -35,7 +35,7 @@
 -(TiModule*)moduleNamed:(NSString*)name context:(id<TiEvaluator>)context;
 @end
 
-extern NSString * BIHWR2015$ModuleRequireFormat;
+extern NSString * BIRetreat2015$ModuleRequireFormat;
 
 @interface KrollBridge : Bridge<TiEvaluator,KrollDelegate> {
 @private
@@ -44,7 +44,7 @@ extern NSString * BIHWR2015$ModuleRequireFormat;
 	KrollContext *context;
 	NSDictionary *preload;
 	NSMutableDictionary *modules;
-	BIHWR2015Object *_bihwr2015;
+	BIRetreat2015Object *_biretreat2015;
     KrollObject* console;
 	BOOL shutdown;
     BOOL evaluationError;

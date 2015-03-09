@@ -20,9 +20,9 @@ extern NSString * const APSDeployTypeProduction;
 
 /**
  * The APSAnalytics class configures the application to use the APS analytic services
- * to send analytic data that can be viewed on the BIHWR2015 Dashboard.
+ * to send analytic data that can be viewed on the BIRetreat2015 Dashboard.
  *
- * For information on getting started with BIHWR2015 Platform Services,
+ * For information on getting started with BIRetreat2015 Platform Services,
  * see [Appclerator Platform Services for iOS](http://bit.ly/1kqteQS).
  */
 @interface APSAnalytics : NSObject

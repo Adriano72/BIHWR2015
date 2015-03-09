@@ -1,8 +1,8 @@
 /**
- * BIHWR2015 BIHWR2015 License
- * This source code and all modifications done by BIHWR2015
+ * BIRetreat2015 BIRetreat2015 License
+ * This source code and all modifications done by BIRetreat2015
  * are licensed under the Apache Public License (version 2) and
- * are Copyright (c) 2009-2014 by BIHWR2015, Inc.
+ * are Copyright (c) 2009-2014 by BIRetreat2015, Inc.
  */
 
 /*

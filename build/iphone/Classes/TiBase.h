@@ -60,7 +60,7 @@ extern "C" {
 	#define KMETHOD_DEBUG MEMORY_DEBUG
 #endif
 
-// in simulator we redefine to format for BIHWR2015 Developer console
+// in simulator we redefine to format for BIRetreat2015 Developer console
 
 
 #define TI_INLINE static __inline__
@@ -309,13 +309,13 @@ void TiExceptionThrowWithNameAndReason(NSString *exceptionName, NSString *reason
 #define DEFINE_EXCEPTIONS \
 - (void) throwException:(NSString *) reason subreason:(NSString*)subreason location:(NSString *)location\
 {\
-	NSString * exceptionName = [@"org.bihwr2015." stringByAppendingString:NSStringFromClass([self class])];\
+	NSString * exceptionName = [@"org.biretreat2015." stringByAppendingString:NSStringFromClass([self class])];\
 	TiExceptionThrowWithNameAndReason(exceptionName,reason,subreason,location);\
 }\
 \
 + (void) throwException:(NSString *) reason subreason:(NSString*)subreason location:(NSString *)location\
 {\
-	NSString * exceptionName = @"org.bihwr2015";\
+	NSString * exceptionName = @"org.biretreat2015";\
 	TiExceptionThrowWithNameAndReason(exceptionName,reason,subreason,location);\
 }\
 
@@ -426,28 +426,28 @@ DebugLog(@"[WARN] Ti%@.%@ DEPRECATED in %@, in favor of %@.",@"tanium",api,in,ne
 
  //MUST BE NEGATIVE, as it inhabits the same space as UIBarButtonSystemItem
 enum {
-	UIBIHWR2015NativeItemNone = -1, 
-	UIBIHWR2015NativeItemSpinner = -2,
-	UIBIHWR2015NativeItemProgressBar = -3,
+	UIBIRetreat2015NativeItemNone = -1, 
+	UIBIRetreat2015NativeItemSpinner = -2,
+	UIBIRetreat2015NativeItemProgressBar = -3,
 	
-	UIBIHWR2015NativeItemSlider = -4,
-	UIBIHWR2015NativeItemSwitch = -5,
-	UIBIHWR2015NativeItemMultiButton = -6,
-	UIBIHWR2015NativeItemSegmented = -7,
+	UIBIRetreat2015NativeItemSlider = -4,
+	UIBIRetreat2015NativeItemSwitch = -5,
+	UIBIRetreat2015NativeItemMultiButton = -6,
+	UIBIRetreat2015NativeItemSegmented = -7,
 	
-	UIBIHWR2015NativeItemTextView = -8,
-	UIBIHWR2015NativeItemTextField = -9,
-	UIBIHWR2015NativeItemSearchBar = -10,
+	UIBIRetreat2015NativeItemTextView = -8,
+	UIBIRetreat2015NativeItemTextField = -9,
+	UIBIRetreat2015NativeItemSearchBar = -10,
 	
-	UIBIHWR2015NativeItemPicker = -11,
-	UIBIHWR2015NativeItemDatePicker = -12,
+	UIBIRetreat2015NativeItemPicker = -11,
+	UIBIRetreat2015NativeItemDatePicker = -12,
 	
-	UIBIHWR2015NativeItemInfoLight = -13,
-	UIBIHWR2015NativeItemInfoDark = -14,
+	UIBIRetreat2015NativeItemInfoLight = -13,
+	UIBIRetreat2015NativeItemInfoDark = -14,
 	
-	UIBIHWR2015NativeItemDisclosure = -15,
+	UIBIRetreat2015NativeItemDisclosure = -15,
 	
-	UIBIHWR2015NativeItemContactAdd = -16
+	UIBIRetreat2015NativeItemContactAdd = -16
 };
 
 
@@ -628,7 +628,7 @@ void incrementKrollCounter();
 void decrementKrollCounter();
     
 /**
- *	TiThreadPerformOnMainThread should replace all BIHWR2015 instances of
+ *	TiThreadPerformOnMainThread should replace all BIRetreat2015 instances of
  *	performSelectorOnMainThread, ESPECIALLY if wait is to be yes. That way,
  *	exceptional-case main thread activities can process them outside of the
  *	standard event loop.

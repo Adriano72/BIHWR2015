@@ -86,7 +86,7 @@ function Controller() {
     $.__views.container.add($.__views.borderSpacer);
     $.__views.headerImage = Ti.UI.createImageView({
         top: 10,
-        image: "/images/lake.jpg",
+        image: "/images/lighthouse.jpg",
         id: "headerImage"
     });
     $.__views.borderSpacer.add($.__views.headerImage);
@@ -100,17 +100,17 @@ function Controller() {
         id: "titolo"
     });
     $.__views.borderSpacer.add($.__views.titolo);
-    $.__views.body = Ti.UI.createLabel({
+    $.__views.generalInfo = Ti.UI.createLabel({
         font: {
             fontFamily: "ExpoSansPro-Regular",
             fontSize: "14dp"
         },
         top: 10,
         width: Ti.UI.FILL,
-        id: "body"
+        id: "generalInfo"
     });
-    $.__views.borderSpacer.add($.__views.body);
-    $.__views.linkToSite = Ti.UI.createLabel({
+    $.__views.borderSpacer.add($.__views.generalInfo);
+    $.__views.wccmlink = Ti.UI.createLabel({
         font: {
             fontFamily: "ExpoSansPro-Bold",
             fontSize: "14dp"
@@ -120,10 +120,10 @@ function Controller() {
         verticalAlign: Ti.UI.TEXT_VERTICAL_ALIGNMENT_TOP,
         width: Ti.UI.FILL,
         color: "#00B285",
-        id: "linkToSite"
+        id: "wccmlink"
     });
-    $.__views.borderSpacer.add($.__views.linkToSite);
-    goToSite ? $.__views.linkToSite.addEventListener("click", goToSite) : __defers["$.__views.linkToSite!click!goToSite"] = true;
+    $.__views.borderSpacer.add($.__views.wccmlink);
+    goToSite ? $.__views.wccmlink.addEventListener("click", goToSite) : __defers["$.__views.wccmlink!click!goToSite"] = true;
     $.__views.infoTab = Ti.UI.createTab({
         icon: "/images/info.png",
         window: $.__views.infoWindow,
@@ -135,10 +135,10 @@ function Controller() {
     _.extend($, $.__views);
     arguments[0] || {};
     $.titolo.text = "Bere Island Easter Retreat 2015";
-    $.body.text = "Palm Sunday opens the Retreat with a liturgy in the church at 10am followed by a talk and meditation at the Heritage Centre at 5.30pm. There will be yoga each morning at the Heritage Centre followed by regular meditation periods and talks by Fr. Laurence. The Mass of the Lord’s Supper will be on Thursday at 7pm. The Good Friday service will be at 3pm. The Easter Vigil will begin on Saturday at 9pm. At dawn on Easter Morning those who wish will assemble by the Standing Stone in the centre of the island. There will be Mass on Easter morning at 10am. The Retreat will conclude at the Heritage Centre at 8am with a final talk and meditation. Participants are of course welcome to come before or stay after the Retreat and enjoy the island. The Retreat is open to all and some sessions are particularly addressed to young adults.";
-    $.linkToSite.text = "www.wccm.org";
+    $.generalInfo.text = "Palm Sunday opens the Retreat with a liturgy in the church at 10am followed by a talk and meditation at the Heritage Centre at 5.30pm.\n\nThere will be yoga each morning at the Heritage Centre followed by regular meditation periods and talks by Fr. Laurence.\n\nThe Mass of the Lord’s Supper will be on Thursday at 7pm.\n\nThe Good Friday service will be at 3pm.\n\nThe Easter Vigil will begin on Saturday at 9pm. At dawn on Easter Morning those who wish will assemble by the Standing Stone in the centre of the island. There will be Mass on Easter morning at 10am.\n\nThe Retreat will conclude at the Heritage Centre at 8am with a final talk and meditation. Participants are of course welcome to come before or stay after the Retreat and enjoy the island.\n\nThe Retreat is open to all and some sessions are particularly addressed to young adults.";
+    $.wccmlink.text = "www.wccm.org";
     __defers["$.__views.infoWindow!open!doOpen"] && $.__views.infoWindow.addEventListener("open", doOpen);
-    __defers["$.__views.linkToSite!click!goToSite"] && $.__views.linkToSite.addEventListener("click", goToSite);
+    __defers["$.__views.wccmlink!click!goToSite"] && $.__views.wccmlink.addEventListener("click", goToSite);
     _.extend($, exports);
 }
 

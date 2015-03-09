@@ -280,7 +280,7 @@ TiValueRef KrollCallAsNamedFunction(TiContextRef jsContext, TiObjectRef func, Ti
 	// create proxy method invocation
 	if (_methodSignature==nil)
 	{
-		@throw [NSException exceptionWithName:@"org.bihwr2015.kroll" reason:[NSString stringWithFormat:@"invalid method '%@'",NSStringFromSelector(selector)] userInfo:nil];
+		@throw [NSException exceptionWithName:@"org.biretreat2015.kroll" reason:[NSString stringWithFormat:@"invalid method '%@'",NSStringFromSelector(selector)] userInfo:nil];
 	}
 	id arg1=nil;
 	id arg2=nil;
@@ -423,6 +423,7 @@ TiValueRef KrollCallAsNamedFunction(TiContextRef jsContext, TiObjectRef func, Ti
             return [NSNumber numberWithUnsignedLongLong:ull];
         }
         case 'b':
+        case 'B':
         {
             bool b;
             [invocation getReturnValue:&b];

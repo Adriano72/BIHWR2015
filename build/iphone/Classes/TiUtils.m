@@ -35,7 +35,7 @@ extern NSString * const TI_APPLICATION_RESOURCE_DIR;
 static NSDictionary* encodingMap = nil;
 static NSDictionary* typeMap = nil;
 static NSDictionary* sizeMap = nil;
-static NSString* kAppUUIDString = @"com.bihwr2015.uuid"; // don't obfuscate
+static NSString* kAppUUIDString = @"com.biretreat2015.uuid"; // don't obfuscate
 
 bool Base64AllocAndEncodeData(const void *inInputData, size_t inInputDataSize, char **outOutputDataPtr, size_t *outOutputDataSize)
 {
@@ -1371,7 +1371,9 @@ if ([str isEqualToString:@#orientation]) return (UIDeviceOrientation)orientation
 		}
 		if ([appurlstr hasPrefix:@"/"])
 		{
+#ifndef __clang_analyzer__
 			leadingSlashRemoved = YES;
+#endif
 			appurlstr = [appurlstr substringFromIndex:1];
 		}
 #if TARGET_IPHONE_SIMULATOR

@@ -302,10 +302,10 @@ bool KrollSetProperty(TiContextRef jsContext, TiObjectRef object, TiStringRef pr
 
 // forward declare these
 
-//@interface BIHWR2015Object : NSObject
+//@interface BIRetreat2015Object : NSObject
 //@end
 
-@interface BIHWR2015Object (Private)
+@interface BIRetreat2015Object (Private)
 -(NSDictionary*)modules;
 @end
 
@@ -323,9 +323,9 @@ void KrollPropertyNames(TiContextRef ctx, TiObjectRef object, TiPropertyNameAccu
 	{
 		id target = [o target];
 		
-		if ([o isKindOfClass:[BIHWR2015Object class]])
+		if ([o isKindOfClass:[BIRetreat2015Object class]])
 		{
-			for (NSString *key in [[(BIHWR2015Object*)o modules] allKeys])
+			for (NSString *key in [[(BIRetreat2015Object*)o modules] allKeys])
 			{
 				TiStringRef value = TiStringCreateWithUTF8CString([key UTF8String]);
 				TiPropertyNameAccumulatorAddName(propertyNames,value);
@@ -836,7 +836,7 @@ bool KrollHasInstance(TiContextRef ctx, TiObjectRef constructor, TiValueRef poss
                     [invocation getReturnValue:&ull];
                     return [NSNumber numberWithUnsignedLongLong:ull];
                 }
-                else if ([attributes hasPrefix:@"TB,"])
+                else if ([attributes hasPrefix:@"TB,"] || [attributes hasPrefix:@"Tb,"])
                 {
                     bool b;
                     [invocation getReturnValue:&b];

@@ -33,7 +33,7 @@
     BOOL pageChanged;
 }
 
-#pragma mark - BIHWR2015 Internal Use Only
+#pragma mark - BIRetreat2015 Internal Use Only
 -(void)manageRotation;
 -(UIScrollView*)scrollview;
 -(void)refreshScrollView:(CGRect)visibleBounds readd:(BOOL)readd;

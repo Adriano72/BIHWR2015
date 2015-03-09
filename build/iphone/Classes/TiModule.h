@@ -13,7 +13,7 @@
 @class TiHost;
 
 /**
- The base class for all BIHWR2015 modules
+ The base class for all BIRetreat2015 modules
  */
 @interface TiModule : TiProxy 
 {
@@ -51,30 +51,30 @@
 // lifecycle
 
 /**
- BIHWR2015 Platform calls this method on startup.
+ BIRetreat2015 Platform calls this method on startup.
  */
 -(void)startup;
 
 /**
- BIHWR2015 Platform calls this method on shutdown.
+ BIRetreat2015 Platform calls this method on shutdown.
  @param sender The sender of the event.
  */
 -(void)shutdown:(id)sender;
 
 /**
- BIHWR2015 Platform calls this method on suspend.
+ BIRetreat2015 Platform calls this method on suspend.
  @param sender The sender of the event.
  */
 -(void)suspend:(id)sender;
 
 /**
- BIHWR2015 Platform calls this method on entering background.
+ BIRetreat2015 Platform calls this method on entering background.
  @param sender The sender of the event.
  */
 -(void)paused:(id)sender;
 
 /**
- BIHWR2015 Platform calls this method on resume.
+ BIRetreat2015 Platform calls this method on resume.
  @param sender The sender of the event.
  */
 -(void)resume:(id)sender;

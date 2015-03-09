@@ -39,7 +39,7 @@ typedef enum {
 } EncodingError;
 
 /**
- BIHWR2015 orientation flags.
+ BIRetreat2015 orientation flags.
  */
 typedef enum
 {

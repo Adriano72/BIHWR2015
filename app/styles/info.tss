@@ -40,10 +40,10 @@
 
 "#headerImage": {
 	top: 10,
-	image: "/images/lake.jpg"
+	image: "/images/lighthouse.jpg"
 }
 
-"#titolo": {
+".header": {
 	top: 10,
 	width: Ti.UI.FILL,
 	font: {
@@ -51,7 +51,7 @@
     }
 }
 
-"#body": {
+".body": {
 	top: 10,
 	width: Ti.UI.FILL,
 	font: {
@@ -59,7 +59,7 @@
     }
 }
 
-"#linkToSite": {
+".link": {
 	top: 10,
 	height: 40,
 	verticalAlign: Ti.UI.TEXT_VERTICAL_ALIGNMENT_TOP,

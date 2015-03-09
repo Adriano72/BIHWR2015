@@ -255,7 +255,7 @@
 }
 
 
-#pragma mark - BIHWR2015 Internal Use Only
+#pragma mark - BIRetreat2015 Internal Use Only
 -(void)updateKeyboardStatus
 {
     if ( ([[[TiApp app] controller] keyboardVisible]) && ([[[TiApp app] controller] keyboardFocusedProxy] == [self proxy]) ) {
